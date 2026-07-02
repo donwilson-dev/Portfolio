@@ -10,6 +10,10 @@ import foundedScenarioBuilder from '../assets/images/project-artwork/founded/scr
 export const PROJECT_TRACK_SCROLL_KEY = 'portfolio.projectTrack.scrollLeft';
 export const PROJECT_TRACK_SELECTED_KEY = 'portfolio.projectTrack.selectedProject';
 
+export const projectLibrarySettings = {
+  showViewAllControl: false,
+};
+
 export const projects = [
   {
     title: 'Founded',
@@ -46,28 +50,67 @@ export const projects = [
       },
     ],
     githubUrl: 'https://github.com/donwilson-dev/founded',
-    githubStatus: 'Placeholder repository URL',
+    githubStatus: 'GitHub Repository',
     showcase: {
       overview:
         'Founded is presented as a complete case study for structured planning, scenario comparison, and decision support workflows.',
+      screenshotsLabel: 'Screenshot Walkthrough',
+      featuresTitle: 'Features',
       features: [
-        'Scenario and baseline workflow structure',
-        'Dashboard-oriented project review',
-        'Focused interfaces for planning inputs',
-        'Screenshot-supported walkthrough',
+        {
+          title: 'Scenario Workflow',
+          description: 'Guides users from baseline assumptions into alternate planning paths.',
+        },
+        {
+          title: 'Dashboard Review',
+          description: 'Summarizes modeled outcomes through a compact analytical workspace.',
+        },
+        {
+          title: 'Focused Builders',
+          description: 'Separates baseline and scenario inputs so each task stays readable.',
+        },
+        {
+          title: 'Visual Walkthrough',
+          description: 'Uses approved screenshots to document the application flow.',
+        },
       ],
+      architectureSummary:
+        'Founded is organized around a frontend presentation layer, scenario-oriented data flow, and reusable builder surfaces that keep planning steps distinct.',
       architecture: [
-        'Frontend application presentation layer',
-        'Scenario modeling workflow structure',
-        'Reusable dashboard and builder surfaces',
+        {
+          title: 'Presentation Layer',
+          description: 'React-driven screens present dashboards, builders, and review states.',
+        },
+        {
+          title: 'Planning Flow',
+          description: 'Baseline and scenario paths stay separated until comparison.',
+        },
+        {
+          title: 'Reusable Surfaces',
+          description: 'Dashboard and builder patterns support repeated planning tasks.',
+        },
       ],
+      releaseNotesTitle: 'Release Notes',
       releaseNotes: [
-        'Initial showcase integration for Portfolio Version 1.',
-        'Approved artwork and screenshots integrated into the case study.',
+        {
+          title: 'Portfolio Version 1',
+          description: 'Initial showcase integration added to the Portfolio project.',
+        },
+        {
+          title: 'Approved Visual Assets',
+          description: 'Showcase artwork and four application screenshots are integrated.',
+        },
       ],
+      lessonsTitle: 'Lessons Learned',
       lessonsLearned: [
-        'Planning tools benefit from progressive disclosure and focused input surfaces.',
-        'Scenario-heavy software needs clear visual hierarchy before visual flourish.',
+        {
+          title: 'Progressive Disclosure',
+          description: 'Planning tools benefit from revealing detail only when the workflow calls for it.',
+        },
+        {
+          title: 'Hierarchy First',
+          description: 'Scenario-heavy software needs clear structure before visual flourish.',
+        },
       ],
     },
   },
@@ -86,28 +129,64 @@ export const projects = [
     screenshots: [],
     screenshotPlaceholder:
       'Production screenshots are pending. This showcase uses approved artwork until application screenshots are available.',
-    githubUrl: 'https://github.com/donwilson-dev/assetforge',
-    githubStatus: 'Placeholder repository URL',
+    githubUrl: null,
+    githubStatus: 'Repository placeholder pending public availability',
     showcase: {
       overview:
         'AssetForge is represented as an in-development case study centered on asset organization, workflow clarity, and production-readiness.',
+      screenshotsLabel: 'Placeholder Screenshot Section',
+      featuresTitle: 'Planned Features',
       features: [
-        'Asset library workflow concept',
-        'Production-ready organization model',
-        'Portfolio-ready visual presentation',
+        {
+          title: 'Asset Intake',
+          description: 'Planned workflow for importing and organizing production-ready visual assets.',
+        },
+        {
+          title: 'Library Structure',
+          description: 'Organized views for browsing, reviewing, and preparing reusable assets.',
+        },
+        {
+          title: 'Export Readiness',
+          description: 'Future workflow support for consistent naming and handoff preparation.',
+        },
       ],
+      architectureSummary:
+        'AssetForge is planned around a frontend application shell, centralized asset metadata, and reusable library views that can grow as the product matures.',
       architecture: [
-        'Frontend application foundation',
-        'Data-driven asset organization model',
-        'Future-ready project showcase structure',
+        {
+          title: 'Application Shell',
+          description: 'Frontend screens define the planned asset-management workflow.',
+        },
+        {
+          title: 'Asset Metadata',
+          description: 'A data-driven model will organize assets by status, type, and readiness.',
+        },
+        {
+          title: 'Expandable Views',
+          description: 'Library surfaces are planned to support future asset categories.',
+        },
       ],
+      releaseNotesTitle: 'Planned Release Notes',
       releaseNotes: [
-        'Initial showcase integration for Portfolio Version 1.',
-        'Approved card and showcase artwork integrated.',
+        {
+          title: 'Portfolio Version 1',
+          description: 'Initial in-development showcase added with approved artwork.',
+        },
+        {
+          title: 'Screenshot Placeholder',
+          description: 'Production screenshots will replace the placeholder section when available.',
+        },
       ],
+      lessonsTitle: 'Lessons Learned',
       lessonsLearned: [
-        'Asset-heavy tools need predictable naming and clear ownership boundaries.',
-        'Placeholder states should be explicit while production screenshots are pending.',
+        {
+          title: 'Naming Discipline',
+          description: 'Asset-heavy tools need predictable names and ownership boundaries early.',
+        },
+        {
+          title: 'Honest Placeholders',
+          description: 'Placeholder states should be explicit while production screenshots are pending.',
+        },
       ],
     },
   },

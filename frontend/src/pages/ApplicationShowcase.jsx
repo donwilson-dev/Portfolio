@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import externalIcon from '../assets/icons/external.svg';
-import githubIcon from '../assets/icons/github.svg';
+import ScreenshotWalkthrough from '../components/ScreenshotWalkthrough.jsx';
+import ShowcaseList from '../components/ShowcaseList.jsx';
+import ShowcaseRepositoryLink from '../components/ShowcaseRepositoryLink.jsx';
 import ShowcaseSection from '../components/ShowcaseSection.jsx';
 import { getProjectBySlug, PROJECT_TRACK_SELECTED_KEY } from '../data/projects.js';
 import '../styles/projects.css';
@@ -43,15 +44,7 @@ function ApplicationShowcase() {
               <Link className="project-action project-action--secondary" to={`/projects/${project.slug}`}>
                 Back to Overview
               </Link>
-              <a
-                className="project-action project-action--primary"
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={githubIcon} alt="" aria-hidden="true" />
-                GitHub Repository
-              </a>
+              <ShowcaseRepositoryLink project={project} />
             </div>
           </div>
           <div className="showcase-hero__artwork">
@@ -75,67 +68,29 @@ function ApplicationShowcase() {
           </div>
         </ShowcaseSection>
 
-        <ShowcaseSection title="Demo Walkthrough">
-          {project.screenshots.length > 0 ? (
-            <div className="screenshot-grid">
-              {project.screenshots.map((screenshot) => (
-                <figure className="screenshot-card" key={screenshot.title}>
-                  <img src={screenshot.image} alt={`${project.title} ${screenshot.title} screenshot`} loading="lazy" />
-                  <figcaption>
-                    <span>{screenshot.title}</span>
-                    {screenshot.description}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          ) : (
-            <div className="showcase-placeholder">
-              <img src={project.artwork.showcase} alt="" loading="lazy" />
-              <p>{project.screenshotPlaceholder}</p>
-            </div>
-          )}
+        <ShowcaseSection title={project.showcase.screenshotsLabel}>
+          <ScreenshotWalkthrough project={project} />
         </ShowcaseSection>
 
-        <ShowcaseSection title="Features">
-          <ul className="showcase-list">
-            {project.showcase.features.map((feature) => (
-              <li key={feature}>{feature}</li>
-            ))}
-          </ul>
+        <ShowcaseSection title={project.showcase.featuresTitle}>
+          <ShowcaseList ariaLabel={`${project.title} features`} items={project.showcase.features} />
         </ShowcaseSection>
 
         <ShowcaseSection title="Architecture">
-          <ul className="showcase-list">
-            {project.showcase.architecture.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+          <p>{project.showcase.architectureSummary}</p>
+          <ShowcaseList ariaLabel={`${project.title} architecture summary`} items={project.showcase.architecture} />
         </ShowcaseSection>
 
-        <ShowcaseSection title="Release Notes">
-          <ul className="showcase-list">
-            {project.showcase.releaseNotes.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+        <ShowcaseSection title={project.showcase.releaseNotesTitle}>
+          <ShowcaseList ariaLabel={`${project.title} release notes`} items={project.showcase.releaseNotes} ordered />
         </ShowcaseSection>
 
-        <ShowcaseSection title="Lessons Learned">
-          <ul className="showcase-list">
-            {project.showcase.lessonsLearned.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+        <ShowcaseSection title={project.showcase.lessonsTitle}>
+          <ShowcaseList ariaLabel={`${project.title} lessons learned`} items={project.showcase.lessonsLearned} />
         </ShowcaseSection>
 
         <ShowcaseSection title="GitHub Repository">
-          <a className="showcase-repository" href={project.githubUrl} target="_blank" rel="noreferrer">
-            <span>
-              <img src={githubIcon} alt="" aria-hidden="true" />
-              {project.githubStatus}
-            </span>
-            <img src={externalIcon} alt="" aria-hidden="true" />
-          </a>
+          <ShowcaseRepositoryLink project={project} />
         </ShowcaseSection>
       </article>
     </div>

@@ -7,6 +7,7 @@ import {
   PROJECT_TRACK_SCROLL_KEY,
   PROJECT_TRACK_SELECTED_KEY,
   orderedProjects,
+  projectLibrarySettings,
 } from '../data/projects.js';
 
 const scrollAmount = 360;
@@ -117,9 +118,11 @@ function ProjectTrack() {
           <h2 id="project-library-title">Projects</h2>
         </div>
         <div className="project-library__controls" aria-label="Project track controls">
-          <button type="button" onClick={viewAllProjects}>
-            View All
-          </button>
+          {projectLibrarySettings.showViewAllControl ? (
+            <button type="button" onClick={viewAllProjects}>
+              View All
+            </button>
+          ) : null}
           <button
             className="project-library__icon-button"
             type="button"
