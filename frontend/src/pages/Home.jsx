@@ -1,8 +1,11 @@
+import HomeHero from '../components/HomeHero.jsx';
+import '../styles/home.css';
+
 function Home() {
   return (
-    <section>
-      <h1>Home</h1>
-    </section>
+    <div className="home-page">
+      <HomeHero />
+    </div>
   );
 }
 

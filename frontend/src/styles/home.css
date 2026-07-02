@@ -1,0 +1,126 @@
+.home-page {
+  min-height: 100%;
+  background: var(--color-background-primary);
+}
+
+.home-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100svh - var(--navigation-height) - 4rem);
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-background-primary);
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: var(--space-lg);
+  z-index: -1;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+}
+
+.home-hero__background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-inline: var(--container-gutter);
+  background: var(--color-background-primary);
+  pointer-events: none;
+}
+
+.home-hero__background img {
+  width: min(44rem, 72vw);
+  opacity: 0.08;
+  filter: saturate(0.8);
+}
+
+.home-hero__content {
+  position: relative;
+  display: grid;
+  gap: var(--space-lg);
+  align-content: center;
+  padding-block: var(--space-4xl);
+}
+
+.home-hero__eyebrow {
+  color: var(--color-gold-muted);
+  font: var(--type-navigation);
+}
+
+.home-hero h1 {
+  max-width: 16ch;
+  font: var(--type-hero);
+}
+
+.home-hero__introduction {
+  max-width: 42rem;
+  color: var(--color-text-secondary);
+  font: var(--type-body-large);
+}
+
+.home-hero__mission {
+  max-width: 40rem;
+  padding: var(--space-md) 0 var(--space-md) var(--space-lg);
+  border-left: 1px solid var(--color-border-hover);
+}
+
+.home-hero__mission p {
+  color: var(--color-text-primary);
+  font: var(--type-h4);
+}
+
+.home-hero__cta {
+  width: fit-content;
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font: var(--type-button);
+  text-decoration: none;
+  box-shadow: var(--shadow-gold-soft);
+}
+
+.home-hero__cta:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-hover);
+  color: var(--color-gold-hover);
+  text-decoration: none;
+}
+
+@media (max-width: 48rem) {
+  .home-hero {
+    min-height: auto;
+  }
+
+  .home-hero::before {
+    inset: var(--space-md);
+  }
+
+  .home-hero__background {
+    justify-content: center;
+  }
+
+  .home-hero__background img {
+    width: 28rem;
+  }
+
+  .home-hero h1 {
+    font: var(--type-h1);
+  }
+
+  .home-hero__mission p {
+    font: var(--type-body-large);
+  }
+}
