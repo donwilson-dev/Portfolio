@@ -11,6 +11,7 @@ import {
 } from '../data/projects.js';
 
 const scrollAmount = 360;
+const dragThreshold = 8;
 
 const getScrollBehavior = () => {
   if (typeof window === 'undefined' || !window.matchMedia) {
@@ -29,6 +30,7 @@ function ProjectTrack() {
   const trackRef = useRef(null);
   const dragStateRef = useRef({
     isDragging: false,
+    pointerId: null,
     pointerStart: 0,
     scrollStart: 0,
     didDrag: false,
@@ -87,10 +89,9 @@ function ProjectTrack() {
       return;
     }
 
-    trackRef.current.setPointerCapture?.(event.pointerId);
-
     dragStateRef.current = {
       isDragging: true,
+      pointerId: event.pointerId,
       pointerStart: event.clientX,
       scrollStart: trackRef.current.scrollLeft,
       didDrag: false,
@@ -99,22 +100,37 @@ function ProjectTrack() {
 
   const continueDrag = (event) => {
     const dragState = dragStateRef.current;
-    if (!dragState.isDragging || !trackRef.current) {
+    if (!dragState.isDragging || dragState.pointerId !== event.pointerId || !trackRef.current) {
       return;
     }
 
     const distance = event.clientX - dragState.pointerStart;
-    if (Math.abs(distance) > 4) {
+    if (Math.abs(distance) > dragThreshold) {
+      if (!dragState.didDrag) {
+        trackRef.current.setPointerCapture?.(event.pointerId);
+      }
       dragState.didDrag = true;
     }
 
+    if (!dragState.didDrag) {
+      return;
+    }
+
+    event.preventDefault();
     trackRef.current.scrollLeft = dragState.scrollStart - distance;
     storeScrollPosition();
   };
 
   const endDrag = (event) => {
-    trackRef.current?.releasePointerCapture?.(event.pointerId);
+    if (dragStateRef.current.pointerId !== event.pointerId) {
+      return;
+    }
+
+    if (dragStateRef.current.didDrag) {
+      trackRef.current?.releasePointerCapture?.(event.pointerId);
+    }
     dragStateRef.current.isDragging = false;
+    dragStateRef.current.pointerId = null;
   };
 
   const preventClickAfterDrag = (event) => {

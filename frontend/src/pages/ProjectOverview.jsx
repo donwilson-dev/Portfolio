@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import arrowLeftIcon from '../assets/icons/arrow-left.svg';
 import ProjectOverviewContent from '../components/ProjectOverviewContent.jsx';
 import { getProjectBySlug, PROJECT_TRACK_SELECTED_KEY } from '../data/projects.js';
 import '../styles/projects.css';
@@ -22,6 +23,7 @@ function ProjectOverview() {
           <h1 id="project-not-found-title">Project not found</h1>
           <p>The requested project is not part of the current portfolio library.</p>
           <Link className="project-action project-action--primary" to="/projects">
+            <img src={arrowLeftIcon} alt="" aria-hidden="true" />
             Back to Projects
           </Link>
         </section>

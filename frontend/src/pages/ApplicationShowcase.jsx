@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import arrowLeftIcon from '../assets/icons/arrow-left.svg';
+import checkIcon from '../assets/icons/check.svg';
+import codeIcon from '../assets/icons/code.svg';
+import warningIcon from '../assets/icons/warning.svg';
 import ScreenshotWalkthrough from '../components/ScreenshotWalkthrough.jsx';
 import ShowcaseList from '../components/ShowcaseList.jsx';
 import ShowcaseRepositoryLink from '../components/ShowcaseRepositoryLink.jsx';
@@ -10,6 +14,7 @@ import '../styles/projects.css';
 function ApplicationShowcase() {
   const { projectId } = useParams();
   const project = getProjectBySlug(projectId);
+  const statusIcon = project?.status === 'Completed' ? checkIcon : warningIcon;
 
   useEffect(() => {
     if (project) {
@@ -25,6 +30,7 @@ function ApplicationShowcase() {
           <h1 id="showcase-not-found-title">Showcase not found</h1>
           <p>The requested showcase is not part of the current portfolio library.</p>
           <Link className="project-action project-action--primary" to="/projects">
+            <img src={arrowLeftIcon} alt="" aria-hidden="true" />
             Back to Projects
           </Link>
         </section>
@@ -42,6 +48,7 @@ function ApplicationShowcase() {
             <p>{project.showcase.overview}</p>
             <div className="project-actions">
               <Link className="project-action project-action--secondary" to={`/projects/${project.slug}`}>
+                <img src={arrowLeftIcon} alt="" aria-hidden="true" />
                 Back to Overview
               </Link>
               <ShowcaseRepositoryLink project={project} />
@@ -58,10 +65,16 @@ function ApplicationShowcase() {
             <dl className="project-meta">
               <div>
                 <dt>Status</dt>
-                <dd>{project.status}</dd>
+                <dd>
+                  <img src={statusIcon} alt="" aria-hidden="true" />
+                  {project.status}
+                </dd>
               </div>
               <div>
-                <dt>Technology Stack</dt>
+                <dt>
+                  <img src={codeIcon} alt="" aria-hidden="true" />
+                  Technology Stack
+                </dt>
                 <dd>{project.technologyStack.join(', ')}</dd>
               </div>
             </dl>

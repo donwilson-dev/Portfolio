@@ -304,6 +304,123 @@ button {
   width: min(100%, var(--container-narrow));
 }
 
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: var(--space-xl);
+  background: rgba(11, 11, 13, 0.88);
+  animation: overlay-enter var(--motion-duration-base) var(--motion-ease-standard) both;
+}
+
+.image-viewer__dialog {
+  width: min(100%, 70rem);
+  max-height: min(88vh, 62rem);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--color-border-hover);
+  border-radius: var(--radius-lg);
+  background: var(--color-background-secondary);
+  box-shadow: var(--shadow-medium);
+  animation: dialog-enter var(--motion-duration-base) var(--motion-ease-emphasized) both;
+}
+
+.image-viewer--screenshot .image-viewer__dialog {
+  width: min(100%, 88rem);
+}
+
+.image-viewer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.image-viewer__title {
+  min-width: 0;
+  font: var(--type-h3);
+}
+
+.image-viewer__control {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transition: var(--motion-transition-interactive);
+}
+
+.image-viewer__control:hover,
+.image-viewer__control:focus-visible {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-hover);
+  transform: var(--motion-hover-raise);
+}
+
+.image-viewer__control:active {
+  transform: scale(var(--motion-active-scale));
+}
+
+.image-viewer__control img {
+  width: 1.125rem;
+  height: 1.125rem;
+  filter: invert(97%) sepia(5%) saturate(116%) hue-rotate(354deg) brightness(97%) contrast(96%);
+  transition: var(--motion-transition-media);
+}
+
+.image-viewer__control:hover img,
+.image-viewer__control:focus-visible img {
+  filter: invert(82%) sepia(58%) saturate(436%) hue-rotate(1deg) brightness(95%) contrast(88%);
+}
+
+.image-viewer__body {
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--space-lg);
+  background: var(--color-background-primary);
+}
+
+.image-viewer__body--with-navigation {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-md);
+  overflow: hidden;
+}
+
+.image-viewer__image-frame {
+  max-height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  border-radius: var(--radius-sm);
+}
+
+.image-viewer__body--with-navigation .image-viewer__image-frame {
+  height: 100%;
+}
+
+.image-viewer__image-frame img {
+  width: min(100%, 64rem);
+  margin-inline: auto;
+  border-radius: var(--radius-sm);
+}
+
+.image-viewer--screenshot .image-viewer__image-frame img {
+  width: auto;
+  max-width: none;
+}
+
 .section {
   padding-block: var(--space-4xl);
 }
@@ -389,6 +506,51 @@ button {
   .section {
     padding-block: var(--space-2xl);
   }
+
+  .image-viewer {
+    padding: var(--space-md);
+  }
+
+  .image-viewer__dialog {
+    max-height: calc(100vh - (var(--space-md) * 2));
+  }
+
+  .image-viewer__header {
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+
+  .image-viewer__title {
+    font: var(--type-h4);
+  }
+
+  .image-viewer__body {
+    padding: var(--space-md);
+  }
+
+  .image-viewer__body--with-navigation {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .image-viewer__body--with-navigation .image-viewer__image-frame {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .image-viewer__nav {
+    width: 100%;
+  }
+
+  .image-viewer__nav--previous {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .image-viewer__nav--next {
+    grid-column: 2;
+    grid-row: 2;
+  }
 }
 
 @media (max-width: 30rem) {
@@ -424,8 +586,8 @@ button {
   .about-page,
   .projects-page,
   .contact-page,
-  .certificate-viewer,
-  .certificate-viewer__dialog {
+  .image-viewer,
+  .image-viewer__dialog {
     animation: none !important;
   }
 }

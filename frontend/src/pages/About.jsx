@@ -12,16 +12,22 @@ import '../styles/about.css';
 function About() {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const lastFocusedElementRef = useRef(null);
+  const lastScrollPositionRef = useRef({ left: 0, top: 0 });
 
   const openCertificate = (certificate) => {
     lastFocusedElementRef.current = document.activeElement;
+    lastScrollPositionRef.current = {
+      left: window.scrollX,
+      top: window.scrollY,
+    };
     setSelectedCertificate(certificate);
   };
 
   const closeCertificate = () => {
     setSelectedCertificate(null);
     requestAnimationFrame(() => {
-      lastFocusedElementRef.current?.focus();
+      window.scrollTo(lastScrollPositionRef.current.left, lastScrollPositionRef.current.top);
+      lastFocusedElementRef.current?.focus({ preventScroll: true });
     });
   };
 

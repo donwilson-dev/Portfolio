@@ -1,6 +1,8 @@
 import emailIcon from '../assets/icons/email.svg';
+import externalIcon from '../assets/icons/external.svg';
 import githubIcon from '../assets/icons/github.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
+import messageIcon from '../assets/icons/message.svg';
 import resumeIcon from '../assets/icons/resume.svg';
 
 const contactIcons = {
@@ -13,6 +15,7 @@ const contactIcons = {
 function ContactCard({ method }) {
   const titleId = `contact-card-${method.id}-title`;
   const descriptionId = `contact-card-${method.id}-description`;
+  const actionIcon = method.id === 'resume' ? messageIcon : method.external ? externalIcon : null;
   const linkProps = method.external
     ? {
         target: '_blank',
@@ -35,6 +38,7 @@ function ContactCard({ method }) {
       </div>
       <a className="contact-card__action" href={method.href} {...linkProps}>
         {method.actionLabel}
+        {actionIcon ? <img src={actionIcon} alt="" aria-hidden="true" /> : null}
       </a>
     </article>
   );
