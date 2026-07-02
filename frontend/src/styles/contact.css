@@ -53,11 +53,14 @@
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-soft);
+  transition: var(--motion-transition-card);
 }
 
-.contact-card:hover {
+.contact-card:hover,
+.contact-card:focus-within {
   border-color: var(--color-border-hover);
   background: var(--color-surface-hover);
+  transform: var(--motion-hover-raise);
 }
 
 .contact-card__icon {
@@ -74,6 +77,7 @@
   width: 1.35rem;
   height: 1.35rem;
   filter: invert(97%) sepia(5%) saturate(116%) hue-rotate(354deg) brightness(97%) contrast(96%);
+  transition: var(--motion-transition-media);
 }
 
 .contact-card__content {
@@ -109,13 +113,20 @@
   color: var(--color-text-primary);
   font: var(--type-button);
   text-decoration: none;
+  transition: var(--motion-transition-interactive);
 }
 
-.contact-card__action:hover {
+.contact-card__action:hover,
+.contact-card__action:focus-visible {
   border-color: var(--color-border-hover);
   background: var(--color-surface-hover);
   color: var(--color-gold-hover);
   text-decoration: none;
+  transform: var(--motion-hover-raise);
+}
+
+.contact-card__action:active {
+  transform: scale(var(--motion-active-scale));
 }
 
 @media (max-width: 72rem) {

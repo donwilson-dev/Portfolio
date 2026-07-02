@@ -81,9 +81,35 @@
   --motion-duration-base: 220ms;
   --motion-duration-slow: 360ms;
   --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --motion-ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   --motion-hover-lift: 0.125rem;
   --motion-hover-scale: 1.01;
+  --motion-active-scale: 0.99;
+  --motion-drag-scale: 0.995;
+  --motion-page-enter-distance: 0.375rem;
+  --motion-overlay-enter-distance: 0.5rem;
+  --motion-hover-raise: translateY(calc(var(--motion-hover-lift) * -1));
+  --motion-transition-link:
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    text-decoration-color var(--motion-duration-fast) var(--motion-ease-standard);
+  --motion-transition-interactive:
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    border-color var(--motion-duration-fast) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-standard),
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    filter var(--motion-duration-fast) var(--motion-ease-standard),
+    opacity var(--motion-duration-fast) var(--motion-ease-standard),
+    transform var(--motion-duration-fast) var(--motion-ease-standard);
+  --motion-transition-card:
+    background-color var(--motion-duration-base) var(--motion-ease-standard),
+    border-color var(--motion-duration-base) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-base) var(--motion-ease-standard),
+    color var(--motion-duration-base) var(--motion-ease-standard),
+    transform var(--motion-duration-base) var(--motion-ease-standard);
+  --motion-transition-media:
+    filter var(--motion-duration-base) var(--motion-ease-standard),
+    opacity var(--motion-duration-base) var(--motion-ease-standard),
+    transform var(--motion-duration-base) var(--motion-ease-standard);
 
   font-family: var(--font-family-base);
   font-synthesis: none;
@@ -159,6 +185,7 @@ a {
   color: inherit;
   text-decoration-color: transparent;
   text-underline-offset: 0.2em;
+  transition: var(--motion-transition-link);
 }
 
 a:hover {
@@ -216,6 +243,47 @@ button {
 
 .app-shell__content {
   flex: 1;
+}
+
+.home-page,
+.about-page,
+.projects-page,
+.contact-page {
+  animation: page-enter var(--motion-duration-base) var(--motion-ease-standard) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-page-enter-distance));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes overlay-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-overlay-enter-distance)) scale(var(--motion-active-scale));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .page-container {
@@ -293,6 +361,16 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-hover-lift: 0rem;
+    --motion-hover-scale: 1;
+    --motion-active-scale: 1;
+    --motion-drag-scale: 1;
+    --motion-page-enter-distance: 0rem;
+    --motion-overlay-enter-distance: 0rem;
+    --motion-hover-raise: translateY(0);
+  }
+
   *,
   *::before,
   *::after {
@@ -300,5 +378,14 @@ button {
     transition-duration: 1ms !important;
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .home-page,
+  .about-page,
+  .projects-page,
+  .contact-page,
+  .certificate-viewer,
+  .certificate-viewer__dialog {
+    animation: none !important;
   }
 }

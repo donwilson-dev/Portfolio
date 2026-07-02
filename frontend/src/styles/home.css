@@ -39,6 +39,7 @@
   width: min(44rem, 72vw);
   opacity: 0.08;
   filter: saturate(0.8);
+  transition: var(--motion-transition-media);
 }
 
 .home-hero__content {
@@ -90,13 +91,20 @@
   font: var(--type-button);
   text-decoration: none;
   box-shadow: var(--shadow-gold-soft);
+  transition: var(--motion-transition-interactive);
 }
 
-.home-hero__cta:hover {
+.home-hero__cta:hover,
+.home-hero__cta:focus-visible {
   border-color: var(--color-border-hover);
   background: var(--color-surface-hover);
   color: var(--color-gold-hover);
   text-decoration: none;
+  transform: var(--motion-hover-raise);
+}
+
+.home-hero__cta:active {
+  transform: scale(var(--motion-active-scale));
 }
 
 @media (max-width: 48rem) {

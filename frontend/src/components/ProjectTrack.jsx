@@ -12,6 +12,18 @@ import {
 
 const scrollAmount = 360;
 
+const getScrollBehavior = () => {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return 'auto';
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return 'auto';
+  }
+
+  return 'smooth';
+};
+
 function ProjectTrack() {
   const location = useLocation();
   const trackRef = useRef(null);
@@ -56,7 +68,7 @@ function ProjectTrack() {
   };
 
   const scrollTrack = (direction) => {
-    trackRef.current?.scrollBy({ left: direction * scrollAmount, behavior: 'auto' });
+    trackRef.current?.scrollBy({ left: direction * scrollAmount, behavior: getScrollBehavior() });
     requestAnimationFrame(storeScrollPosition);
   };
 

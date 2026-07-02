@@ -65,6 +65,7 @@
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-soft);
+  transition: var(--motion-transition-card);
 }
 
 .technology-group h3 {
@@ -103,11 +104,18 @@
   background: var(--color-surface);
   box-shadow: var(--shadow-soft);
   text-align: left;
+  transition: var(--motion-transition-card);
 }
 
-.certificate-card:hover {
+.certificate-card:hover,
+.certificate-card:focus-visible {
   border-color: var(--color-border-hover);
   background: var(--color-surface-hover);
+  transform: var(--motion-hover-raise) scale(var(--motion-hover-scale));
+}
+
+.certificate-card:active {
+  transform: scale(var(--motion-active-scale));
 }
 
 .certificate-card__media {
@@ -124,6 +132,7 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  transition: var(--motion-transition-media);
 }
 
 .certificate-card__content {
@@ -150,6 +159,7 @@
   place-items: center;
   padding: var(--space-xl);
   background: rgba(11, 11, 13, 0.88);
+  animation: overlay-enter var(--motion-duration-base) var(--motion-ease-standard) both;
 }
 
 .certificate-viewer__dialog {
@@ -162,6 +172,7 @@
   border-radius: var(--radius-lg);
   background: var(--color-background-secondary);
   box-shadow: var(--shadow-medium);
+  animation: dialog-enter var(--motion-duration-base) var(--motion-ease-emphasized) both;
 }
 
 .certificate-viewer__header {
@@ -186,17 +197,25 @@
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-md);
   background: var(--color-surface);
+  transition: var(--motion-transition-interactive);
 }
 
-.certificate-viewer__close:hover {
+.certificate-viewer__close:hover,
+.certificate-viewer__close:focus-visible {
   border-color: var(--color-border-hover);
   background: var(--color-surface-hover);
+  transform: var(--motion-hover-raise);
+}
+
+.certificate-viewer__close:active {
+  transform: scale(var(--motion-active-scale));
 }
 
 .certificate-viewer__close img {
   width: 1.125rem;
   height: 1.125rem;
   filter: invert(97%) sepia(5%) saturate(116%) hue-rotate(354deg) brightness(97%) contrast(96%);
+  transition: var(--motion-transition-media);
 }
 
 .certificate-viewer__image-frame {
