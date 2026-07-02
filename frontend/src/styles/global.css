@@ -127,6 +127,7 @@
 html {
   min-height: 100%;
   background: var(--color-background-primary);
+  overflow-x: clip;
 }
 
 body,
@@ -140,6 +141,7 @@ body {
   background: var(--color-background-primary);
   color: var(--color-text-primary);
   font: var(--type-body);
+  overflow-x: clip;
 }
 
 h1,
@@ -358,6 +360,44 @@ button {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media (max-width: 64rem) {
+  :root {
+    --font-size-hero: 3rem;
+    --font-size-h1: 2.25rem;
+    --font-size-h2: 1.75rem;
+    --font-size-h3: 1.375rem;
+    --container-gutter: clamp(var(--space-lg), 5vw, var(--space-2xl));
+  }
+
+  .section {
+    padding-block: var(--space-3xl);
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --font-size-hero: 2.5rem;
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.625rem;
+    --font-size-h3: 1.25rem;
+    --font-size-body-large: 1rem;
+    --container-gutter: clamp(var(--space-md), 5vw, var(--space-lg));
+  }
+
+  .section {
+    padding-block: var(--space-2xl);
+  }
+}
+
+@media (max-width: 30rem) {
+  :root {
+    --font-size-hero: 2.125rem;
+    --font-size-h1: 1.75rem;
+    --font-size-h2: 1.5rem;
+    --container-gutter: var(--space-md);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

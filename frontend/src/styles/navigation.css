@@ -25,6 +25,8 @@
 
 .site-nav__brand {
   display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   color: var(--color-text-primary);
   font: var(--type-navigation);
   letter-spacing: 0;
@@ -138,7 +140,31 @@
   font: var(--type-small);
 }
 
+@media (max-width: 64rem) {
+  .site-nav {
+    gap: var(--space-md);
+  }
+
+  .site-nav__menu {
+    gap: var(--space-md);
+  }
+
+  .site-nav__links,
+  .site-nav__external-links {
+    gap: var(--space-xs);
+  }
+
+  .site-nav__link,
+  .site-nav__external-link {
+    padding-inline: var(--space-xs);
+  }
+}
+
 @media (max-width: 48rem) {
+  .app-shell {
+    --navigation-height: 4rem;
+  }
+
   .site-nav {
     justify-content: space-between;
   }
@@ -156,6 +182,8 @@
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-md);
+    max-height: calc(100vh - var(--navigation-height) - var(--space-lg));
+    overflow-y: auto;
     padding: var(--space-md);
     border: 1px solid var(--color-border-default);
     border-radius: var(--radius-lg);
@@ -179,5 +207,7 @@
   .site-nav__external-link {
     width: 100%;
     justify-content: space-between;
+    min-height: 3rem;
+    padding: var(--space-sm) var(--space-md);
   }
 }

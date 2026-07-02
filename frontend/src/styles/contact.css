@@ -133,6 +133,10 @@
   .contact-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .contact-card {
+    min-height: 18rem;
+  }
 }
 
 @media (max-width: 48rem) {
@@ -140,11 +144,43 @@
     padding-block: var(--space-2xl);
   }
 
+  .contact-hero {
+    padding-block: var(--space-2xl);
+  }
+
   .contact-hero h1 {
     font: var(--type-h1);
+    max-width: 100%;
+  }
+
+  .contact-hero p:last-child {
+    font: var(--type-body);
+  }
+
+  .contact-section {
+    padding-block: var(--space-xl);
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    min-height: auto;
+    padding: var(--space-md);
+  }
+
+  .contact-card__action {
+    min-height: 3rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .contact-card {
+    gap: var(--space-md);
+  }
+
+  .contact-card__action {
+    width: 100%;
   }
 }

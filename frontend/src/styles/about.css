@@ -231,6 +231,10 @@
 }
 
 @media (max-width: 64rem) {
+  .about-page {
+    padding-block: var(--space-3xl);
+  }
+
   .technology-grid,
   .certificate-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -246,8 +250,18 @@
     padding-block: var(--space-2xl);
   }
 
+  .about-hero {
+    padding-block: var(--space-2xl);
+  }
+
   .about-hero h1 {
     font: var(--type-h1);
+    max-width: 100%;
+  }
+
+  .about-hero p:last-child,
+  .about-section__body {
+    font: var(--type-body);
   }
 
   .technology-grid,
@@ -255,11 +269,55 @@
     grid-template-columns: 1fr;
   }
 
+  .technology-group,
+  .certificate-card {
+    min-height: auto;
+    padding: var(--space-md);
+  }
+
+  .certificate-card__media {
+    min-height: 14rem;
+    aspect-ratio: 16 / 10;
+  }
+
   .certificate-viewer {
     padding: var(--space-md);
   }
 
+  .certificate-viewer__dialog {
+    max-height: calc(100vh - (var(--space-md) * 2));
+  }
+
   .certificate-viewer__header {
     align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+
+  .certificate-viewer__header h2 {
+    min-width: 0;
+    font: var(--type-h4);
+  }
+
+  .certificate-viewer__image-frame {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 30rem) {
+  .about-section {
+    gap: var(--space-lg);
+  }
+
+  .technology-group li {
+    max-width: 100%;
+  }
+
+  .certificate-card {
+    gap: var(--space-md);
+  }
+
+  .certificate-card__media {
+    min-height: 11rem;
   }
 }

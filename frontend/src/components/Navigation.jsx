@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import githubIcon from '../assets/icons/github.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
@@ -18,6 +18,24 @@ function Navigation() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="site-header">
@@ -64,6 +82,7 @@ function Navigation() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={`${item.label} profile, opens in a new tab`}
+                  onClick={closeMenu}
                 >
                   <img src={externalIcons[item.icon]} alt="" aria-hidden="true" />
                   <span>{item.label}</span>

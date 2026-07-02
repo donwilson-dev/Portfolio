@@ -110,6 +110,7 @@
 @media (max-width: 48rem) {
   .home-hero {
     min-height: auto;
+    align-items: start;
   }
 
   .home-hero::before {
@@ -121,14 +122,51 @@
   }
 
   .home-hero__background img {
-    width: 28rem;
+    width: min(28rem, 110vw);
+  }
+
+  .home-hero__content {
+    gap: var(--space-md);
+    padding-block: var(--space-3xl);
   }
 
   .home-hero h1 {
     font: var(--type-h1);
+    max-width: 12ch;
+  }
+
+  .home-hero__introduction,
+  .home-hero__mission {
+    max-width: 100%;
   }
 
   .home-hero__mission p {
     font: var(--type-body-large);
+  }
+
+  .home-hero__cta {
+    min-height: 3.25rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .home-hero::before {
+    inset: var(--space-sm);
+  }
+
+  .home-hero__content {
+    padding-block: var(--space-2xl);
+  }
+
+  .home-hero h1 {
+    max-width: 11ch;
+  }
+
+  .home-hero__mission {
+    padding-left: var(--space-md);
+  }
+
+  .home-hero__cta {
+    width: 100%;
   }
 }

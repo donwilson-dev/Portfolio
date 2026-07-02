@@ -83,9 +83,11 @@ function ProjectTrack() {
   };
 
   const beginDrag = (event) => {
-    if (!trackRef.current) {
+    if (!trackRef.current || event.button > 0) {
       return;
     }
+
+    trackRef.current.setPointerCapture?.(event.pointerId);
 
     dragStateRef.current = {
       isDragging: true,
@@ -110,7 +112,8 @@ function ProjectTrack() {
     storeScrollPosition();
   };
 
-  const endDrag = () => {
+  const endDrag = (event) => {
+    trackRef.current?.releasePointerCapture?.(event.pointerId);
     dragStateRef.current.isDragging = false;
   };
 
@@ -161,10 +164,11 @@ function ProjectTrack() {
         ref={trackRef}
         tabIndex={0}
         onScroll={storeScrollPosition}
-        onMouseDown={beginDrag}
-        onMouseMove={continueDrag}
-        onMouseUp={endDrag}
-        onMouseLeave={endDrag}
+        onPointerDown={beginDrag}
+        onPointerMove={continueDrag}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onPointerLeave={endDrag}
         onClickCapture={preventClickAfterDrag}
         aria-label="Scrollable project cards"
       >
