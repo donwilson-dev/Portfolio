@@ -1,14 +1,15 @@
-import assetforgeCard from '../assets/images/project-artwork/assetforge/cards/assetforge-card.png';
-import assetforgeShowcase from '../assets/images/project-artwork/assetforge/showcase/assetforge-showcase.png';
-import foundedCard from '../assets/images/project-artwork/founded/cards/founded-card.png';
-import foundedShowcase from '../assets/images/project-artwork/founded/showcase/founded-showcase.png';
-import foundedBaselineBuilder from '../assets/images/project-artwork/founded/screenshots/baseline-builder.png';
-import foundedDashboard from '../assets/images/project-artwork/founded/screenshots/dashboard.png';
-import foundedHome from '../assets/images/project-artwork/founded/screenshots/home.png';
-import foundedScenarioBuilder from '../assets/images/project-artwork/founded/screenshots/scenario-builder.png';
+import assetforgeCard from "../assets/images/project-artwork/assetforge/cards/assetforge-card.webp";
+import assetforgeShowcase from "../assets/images/project-artwork/assetforge/showcase/assetforge-showcase.webp";
+import foundedCard from "../assets/images/project-artwork/founded/cards/founded-card.webp";
+import foundedShowcase from "../assets/images/project-artwork/founded/showcase/founded-showcase.webp";
+import foundedBaselineBuilder from "../assets/images/project-artwork/founded/screenshots/baseline-builder.webp";
+import foundedDashboard from "../assets/images/project-artwork/founded/screenshots/dashboard.webp";
+import foundedHome from "../assets/images/project-artwork/founded/screenshots/home.webp";
+import foundedScenarioBuilder from "../assets/images/project-artwork/founded/screenshots/scenario-builder.webp";
 
-export const PROJECT_TRACK_SCROLL_KEY = 'portfolio.projectTrack.scrollLeft';
-export const PROJECT_TRACK_SELECTED_KEY = 'portfolio.projectTrack.selectedProject';
+export const PROJECT_TRACK_SCROLL_KEY = "portfolio.projectTrack.scrollLeft";
+export const PROJECT_TRACK_SELECTED_KEY =
+  "portfolio.projectTrack.selectedProject";
 
 export const projectLibrarySettings = {
   showViewAllControl: false,
@@ -16,183 +17,207 @@ export const projectLibrarySettings = {
 
 export const projects = [
   {
-    title: 'Founded',
-    slug: 'founded',
-    status: 'Completed',
+    title: "Founded",
+    slug: "founded",
+    status: "Completed",
     releaseOrder: 1,
     summary:
-      'Founded is a scenario-driven planning application focused on comparing baselines, projections, and decision paths through a clean analytical interface.',
-    technologyStack: ['React', 'JavaScript', 'CSS', 'Scenario modeling'],
+      "Founded is a scenario-driven planning application focused on comparing baselines, projections, and decision paths through a clean analytical interface.",
+    technologyStack: ["React", "JavaScript", "CSS", "Scenario modeling"],
     artwork: {
       card: foundedCard,
       showcase: foundedShowcase,
     },
     screenshots: [
       {
-        title: 'Home',
+        title: "Home",
         image: foundedHome,
-        description: 'Entry point for the Founded application experience.',
+        description: "Entry point for the Founded application experience.",
       },
       {
-        title: 'Dashboard',
+        title: "Dashboard",
         image: foundedDashboard,
-        description: 'Summary workspace for reviewing modeled outcomes.',
+        description: "Summary workspace for reviewing modeled outcomes.",
       },
       {
-        title: 'Baseline Builder',
+        title: "Baseline Builder",
         image: foundedBaselineBuilder,
-        description: 'Structured builder for defining baseline assumptions.',
+        description: "Structured builder for defining baseline assumptions.",
       },
       {
-        title: 'Scenario Builder',
+        title: "Scenario Builder",
         image: foundedScenarioBuilder,
-        description: 'Scenario authoring interface for comparing alternate paths.',
+        description:
+          "Scenario authoring interface for comparing alternate paths.",
       },
     ],
-    githubUrl: 'https://github.com/donwilson-dev/founded',
-    githubStatus: 'GitHub Repository',
+    githubUrl: "https://github.com/donwilson-dev/founded",
+    githubStatus: "GitHub Repository",
     showcase: {
       overview:
-        'Founded is presented as a complete case study for structured planning, scenario comparison, and decision support workflows.',
-      screenshotsLabel: 'Screenshot Walkthrough',
-      featuresTitle: 'Features',
+        "Founded is presented as a complete case study for structured planning, scenario comparison, and decision support workflows.",
+      screenshotsLabel: "Screenshot Walkthrough",
+      featuresTitle: "Features",
       features: [
         {
-          title: 'Scenario Workflow',
-          description: 'Guides users from baseline assumptions into alternate planning paths.',
+          title: "Scenario Workflow",
+          description:
+            "Guides users from baseline assumptions into alternate planning paths.",
         },
         {
-          title: 'Dashboard Review',
-          description: 'Summarizes modeled outcomes through a compact analytical workspace.',
+          title: "Dashboard Review",
+          description:
+            "Summarizes modeled outcomes through a compact analytical workspace.",
         },
         {
-          title: 'Focused Builders',
-          description: 'Separates baseline and scenario inputs so each task stays readable.',
+          title: "Focused Builders",
+          description:
+            "Separates baseline and scenario inputs so each task stays readable.",
         },
         {
-          title: 'Visual Walkthrough',
-          description: 'Uses approved screenshots to document the application flow.',
+          title: "Visual Walkthrough",
+          description:
+            "Uses approved screenshots to document the application flow.",
         },
       ],
       architectureSummary:
-        'Founded is organized around a frontend presentation layer, scenario-oriented data flow, and reusable builder surfaces that keep planning steps distinct.',
+        "Founded is organized around a frontend presentation layer, scenario-oriented data flow, and reusable builder surfaces that keep planning steps distinct.",
       architecture: [
         {
-          title: 'Presentation Layer',
-          description: 'React-driven screens present dashboards, builders, and review states.',
+          title: "Presentation Layer",
+          description:
+            "React-driven screens present dashboards, builders, and review states.",
         },
         {
-          title: 'Planning Flow',
-          description: 'Baseline and scenario paths stay separated until comparison.',
+          title: "Planning Flow",
+          description:
+            "Baseline and scenario paths stay separated until comparison.",
         },
         {
-          title: 'Reusable Surfaces',
-          description: 'Dashboard and builder patterns support repeated planning tasks.',
+          title: "Reusable Surfaces",
+          description:
+            "Dashboard and builder patterns support repeated planning tasks.",
         },
       ],
-      releaseNotesTitle: 'Release Notes',
+      releaseNotesTitle: "Release Notes",
       releaseNotes: [
         {
-          title: 'Portfolio Version 1',
-          description: 'Initial showcase integration added to the Portfolio project.',
+          title: "Portfolio Version 1",
+          description:
+            "Initial showcase integration added to the Portfolio project.",
         },
         {
-          title: 'Approved Visual Assets',
-          description: 'Showcase artwork and four application screenshots are integrated.',
+          title: "Approved Visual Assets",
+          description:
+            "Showcase artwork and four application screenshots are integrated.",
         },
       ],
-      lessonsTitle: 'Lessons Learned',
+      lessonsTitle: "Lessons Learned",
       lessonsLearned: [
         {
-          title: 'Progressive Disclosure',
-          description: 'Planning tools benefit from revealing detail only when the workflow calls for it.',
+          title: "Progressive Disclosure",
+          description:
+            "Planning tools benefit from revealing detail only when the workflow calls for it.",
         },
         {
-          title: 'Hierarchy First',
-          description: 'Scenario-heavy software needs clear structure before visual flourish.',
+          title: "Hierarchy First",
+          description:
+            "Scenario-heavy software needs clear structure before visual flourish.",
         },
       ],
     },
   },
   {
-    title: 'AssetForge',
-    slug: 'assetforge',
-    status: 'In Development',
+    title: "AssetForge",
+    slug: "assetforge",
+    status: "In Development",
     releaseOrder: 2,
     summary:
-      'AssetForge is a developing asset-management concept for organizing production-ready visual assets through a focused software workflow.',
-    technologyStack: ['React', 'JavaScript', 'CSS', 'Asset workflow design'],
+      "AssetForge is a developing asset-management concept for organizing production-ready visual assets through a focused software workflow.",
+    technologyStack: ["React", "JavaScript", "CSS", "Asset workflow design"],
     artwork: {
       card: assetforgeCard,
       showcase: assetforgeShowcase,
     },
     screenshots: [],
     screenshotPlaceholder:
-      'Production screenshots are pending. This showcase uses approved artwork until application screenshots are available.',
+      "Production screenshots are pending. This showcase uses approved artwork until application screenshots are available.",
     githubUrl: null,
-    githubStatus: 'Repository placeholder pending public availability',
+    githubStatus: "Repository placeholder pending public availability",
     showcase: {
       overview:
-        'AssetForge is represented as an in-development case study centered on asset organization, workflow clarity, and production-readiness.',
-      screenshotsLabel: 'Placeholder Screenshot Section',
-      featuresTitle: 'Planned Features',
+        "AssetForge is represented as an in-development case study centered on asset organization, workflow clarity, and production-readiness.",
+      screenshotsLabel: "Placeholder Screenshot Section",
+      featuresTitle: "Planned Features",
       features: [
         {
-          title: 'Asset Intake',
-          description: 'Planned workflow for importing and organizing production-ready visual assets.',
+          title: "Asset Intake",
+          description:
+            "Planned workflow for importing and organizing production-ready visual assets.",
         },
         {
-          title: 'Library Structure',
-          description: 'Organized views for browsing, reviewing, and preparing reusable assets.',
+          title: "Library Structure",
+          description:
+            "Organized views for browsing, reviewing, and preparing reusable assets.",
         },
         {
-          title: 'Export Readiness',
-          description: 'Future workflow support for consistent naming and handoff preparation.',
+          title: "Export Readiness",
+          description:
+            "Future workflow support for consistent naming and handoff preparation.",
         },
       ],
       architectureSummary:
-        'AssetForge is planned around a frontend application shell, centralized asset metadata, and reusable library views that can grow as the product matures.',
+        "AssetForge is planned around a frontend application shell, centralized asset metadata, and reusable library views that can grow as the product matures.",
       architecture: [
         {
-          title: 'Application Shell',
-          description: 'Frontend screens define the planned asset-management workflow.',
+          title: "Application Shell",
+          description:
+            "Frontend screens define the planned asset-management workflow.",
         },
         {
-          title: 'Asset Metadata',
-          description: 'A data-driven model will organize assets by status, type, and readiness.',
+          title: "Asset Metadata",
+          description:
+            "A data-driven model will organize assets by status, type, and readiness.",
         },
         {
-          title: 'Expandable Views',
-          description: 'Library surfaces are planned to support future asset categories.',
+          title: "Expandable Views",
+          description:
+            "Library surfaces are planned to support future asset categories.",
         },
       ],
-      releaseNotesTitle: 'Planned Release Notes',
+      releaseNotesTitle: "Planned Release Notes",
       releaseNotes: [
         {
-          title: 'Portfolio Version 1',
-          description: 'Initial in-development showcase added with approved artwork.',
+          title: "Portfolio Version 1",
+          description:
+            "Initial in-development showcase added with approved artwork.",
         },
         {
-          title: 'Screenshot Placeholder',
-          description: 'Production screenshots will replace the placeholder section when available.',
+          title: "Screenshot Placeholder",
+          description:
+            "Production screenshots will replace the placeholder section when available.",
         },
       ],
-      lessonsTitle: 'Lessons Learned',
+      lessonsTitle: "Lessons Learned",
       lessonsLearned: [
         {
-          title: 'Naming Discipline',
-          description: 'Asset-heavy tools need predictable names and ownership boundaries early.',
+          title: "Naming Discipline",
+          description:
+            "Asset-heavy tools need predictable names and ownership boundaries early.",
         },
         {
-          title: 'Honest Placeholders',
-          description: 'Placeholder states should be explicit while production screenshots are pending.',
+          title: "Honest Placeholders",
+          description:
+            "Placeholder states should be explicit while production screenshots are pending.",
         },
       ],
     },
   },
 ];
 
-export const orderedProjects = [...projects].sort((first, second) => first.releaseOrder - second.releaseOrder);
+export const orderedProjects = [...projects].sort(
+  (first, second) => first.releaseOrder - second.releaseOrder,
+);
 
 export function getProjectBySlug(slug) {
   return orderedProjects.find((project) => project.slug === slug);
