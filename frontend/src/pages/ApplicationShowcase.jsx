@@ -89,9 +89,6 @@ function ApplicationShowcase() {
           <ShowcaseList ariaLabel={`${project.title} lessons learned`} items={project.showcase.lessonsLearned} />
         </ShowcaseSection>
 
-        <ShowcaseSection title="GitHub Repository">
-          <ShowcaseRepositoryLink project={project} />
-        </ShowcaseSection>
       </article>
     </div>
   );
