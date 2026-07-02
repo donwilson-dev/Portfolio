@@ -1,8 +1,85 @@
+import { useRef, useState } from 'react';
+import CertificateCard from '../components/CertificateCard.jsx';
+import CertificateViewer from '../components/CertificateViewer.jsx';
+import {
+  careerBackground,
+  certifications,
+  professionalSummary,
+  technologyGroups,
+} from '../data/about.js';
+import '../styles/about.css';
+
 function About() {
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const lastFocusedElementRef = useRef(null);
+
+  const openCertificate = (certificate) => {
+    lastFocusedElementRef.current = document.activeElement;
+    setSelectedCertificate(certificate);
+  };
+
+  const closeCertificate = () => {
+    setSelectedCertificate(null);
+    requestAnimationFrame(() => {
+      lastFocusedElementRef.current?.focus();
+    });
+  };
+
   return (
-    <section>
-      <h1>About</h1>
-    </section>
+    <div className="about-page">
+      <section className="about-hero page-container" aria-labelledby="about-title">
+        <div className="about-hero__content">
+          <p className="about-page__eyebrow">{professionalSummary.eyebrow}</p>
+          <h1 id="about-title">{professionalSummary.title}</h1>
+          <p>{professionalSummary.body}</p>
+        </div>
+      </section>
+
+      <section className="about-section page-container" aria-labelledby="career-background-title">
+        <div className="about-section__header">
+          <p className="about-page__eyebrow">Background</p>
+          <h2 id="career-background-title">{careerBackground.title}</h2>
+        </div>
+        <p className="about-section__body">{careerBackground.body}</p>
+      </section>
+
+      <section className="about-section page-container" aria-labelledby="technologies-title">
+        <div className="about-section__header">
+          <p className="about-page__eyebrow">Capabilities</p>
+          <h2 id="technologies-title">Technologies &amp; Skills</h2>
+        </div>
+        <div className="technology-grid">
+          {technologyGroups.map((group) => (
+            <article className="technology-group" key={group.category}>
+              <h3>{group.category}</h3>
+              <ul>
+                {group.technologies.map((technology) => (
+                  <li key={technology}>{technology}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-section page-container" aria-labelledby="certifications-title">
+        <div className="about-section__header">
+          <p className="about-page__eyebrow">Credentials</p>
+          <h2 id="certifications-title">Certifications</h2>
+        </div>
+        <div className="certificate-grid">
+          {certifications.map((certificate) => (
+            <CertificateCard
+              certificate={certificate}
+              key={certificate.id}
+              onSelect={() => openCertificate(certificate)}
+            />
+          ))}
+        </div>
+      </section>
+
+      <CertificateViewer certificate={selectedCertificate} onClose={closeCertificate} />
+    </div>
   );
 }
 
