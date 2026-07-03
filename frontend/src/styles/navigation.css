@@ -74,23 +74,34 @@
 .site-nav__brand {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 2.625rem;
+  gap: var(--space-sm);
   height: 2.625rem;
   flex: 0 0 auto;
+  color: var(--color-gold-muted);
   text-decoration: none;
   border-radius: var(--radius-lg);
-  transition: var(--motion-transition-interactive);
 }
 
 .site-nav__brand:hover,
 .site-nav__brand:focus-visible {
-  transform: var(--motion-hover-raise);
+  color: var(--color-gold-muted);
+  text-decoration: none;
 }
 
 .site-nav__brand img {
   width: 2.625rem;
   height: 2.625rem;
+}
+
+.site-nav__brand-label {
+  color: var(--color-gold-muted);
+  font: var(--type-navigation);
+  white-space: nowrap;
+}
+
+.site-nav__brand:hover .site-nav__brand-label,
+.site-nav__brand:focus-visible .site-nav__brand-label {
+  color: var(--color-gold-muted);
 }
 
 .site-nav__menu {

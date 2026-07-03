@@ -43,15 +43,19 @@
 }
 
 .home-hero h1 {
-  max-width: 16ch;
+  max-width: 25ch;
   font: var(--type-hero);
   text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.36);
 }
 
 .home-hero__introduction {
-  max-width: 39rem;
+  max-width: 42rem;
   color: var(--color-text-secondary);
   font: var(--type-body-large);
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+  border-left: 0.1rem solid var(--color-border-hover);
 }
 
 .home-hero__mission {

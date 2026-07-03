@@ -1,20 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function HomeHero() {
   return (
     <section className="home-hero" aria-labelledby="home-hero-title">
       <div className="home-hero__content page-container">
-        <p className="home-hero__eyebrow">Software Developer Portfolio</p>
-        <h1 id="home-hero-title">donwilson-dev</h1>
+        <p className="home-hero__eyebrow">Don Wilson • donwilson-dev</p>
+        <h1 id="home-hero-title">Purpose-Built Software</h1>
         <p className="home-hero__introduction">
-          Software developer focused on purposeful, maintainable applications, clean architecture,
-          and polished user experiences.
+          Software should solve a problem—not create one. It should be visually
+          refined, intuitive to use, and efficient from the first launch.
         </p>
-        <blockquote className="home-hero__mission">
-          <p>&ldquo;Does it serve a purpose, and do I enjoy looking at it?&rdquo;</p>
-        </blockquote>
         <Link className="home-hero__cta" to="/projects">
-          Explore Projects
+          View My Projects
         </Link>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import githubIcon from '../assets/icons/github.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
 import closeIcon from '../assets/icons/close.svg';
@@ -40,10 +40,10 @@ function Navigation() {
   return (
     <header className="site-header">
       <nav className="site-nav page-container" aria-label="Primary navigation">
-        <Link to="/" className="site-nav__brand" onClick={closeMenu}>
+        <div className="site-nav__brand" aria-label="Software Developer Portfolio">
           <img src="/web-app-manifest-192x192.png" alt="" aria-hidden="true" />
-          <span className="sr-only">donwilson-dev home</span>
-        </Link>
+          <span className="site-nav__brand-label">Software Developer Portfolio</span>
+        </div>
 
         <button
           className="site-nav__toggle"
