@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Footer from './components/Footer.jsx';
 import Navigation from './components/Navigation.jsx';
 import About from './pages/About.jsx';
@@ -10,8 +10,15 @@ import Projects from './pages/Projects.jsx';
 import './styles/navigation.css';
 
 function App() {
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+
   return (
-    <div className="app-shell">
+    <div
+      className={
+        isHomePage ? 'app-shell app-shell--with-page-background app-shell--home' : 'app-shell'
+      }
+    >
       <Navigation />
       <main className="app-shell__content">
         <Routes>

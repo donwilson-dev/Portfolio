@@ -41,7 +41,8 @@ function Navigation() {
     <header className="site-header">
       <nav className="site-nav page-container" aria-label="Primary navigation">
         <Link to="/" className="site-nav__brand" onClick={closeMenu}>
-          donwilson-dev
+          <img src="/web-app-manifest-192x192.png" alt="" aria-hidden="true" />
+          <span className="sr-only">donwilson-dev home</span>
         </Link>
 
         <button
