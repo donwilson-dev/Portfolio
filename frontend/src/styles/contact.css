@@ -32,8 +32,7 @@
 .contact-hero__content {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(18rem, 0.82fr) minmax(0, 1.18fr);
-  gap: var(--space-xl);
+  gap: var(--space-2xl);
   align-content: center;
   align-items: center;
   padding-block: clamp(var(--space-xl), 5vh, var(--space-3xl));
@@ -41,20 +40,38 @@
 
 .contact-hero__copy {
   display: grid;
-  gap: var(--space-md);
+  justify-items: center;
+  gap: var(--space-sm);
+  text-align: center;
 }
 
 .contact-hero h1 {
-  max-width: 16ch;
+  position: relative;
+  max-width: 100%;
+  padding-bottom: var(--space-md);
   font: var(--type-hero);
   text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.36);
 }
 
+.contact-hero h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(28rem, 70vw);
+  height: 1px;
+  background:
+    radial-gradient(circle at center, var(--color-gold-hover) 0 0.2rem, transparent 0.22rem),
+    linear-gradient(90deg, transparent, rgba(226, 193, 90, 0.18), var(--color-gold-hover), rgba(226, 193, 90, 0.18), transparent);
+  box-shadow: 0 0 1rem rgba(226, 193, 90, 0.52);
+  transform: translateX(-50%);
+}
+
 .contact-hero__introduction {
-  max-width: 42rem;
+  max-width: 52rem;
   margin-top: var(--space-xs);
-  padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
-  border-left: 0.1rem solid var(--color-border-hover);
+  padding: 0;
+  border-left: 0;
   color: var(--color-text-secondary);
   font: var(--type-body-large);
 }
@@ -62,17 +79,19 @@
 .contact-page__eyebrow {
   color: var(--color-gold-muted);
   font: var(--type-navigation);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
 }
 
 .contact-methods {
   display: grid;
-  gap: var(--space-lg);
-  padding-left: var(--space-xl);
-  border-left: 1px solid var(--color-border-hover);
+  gap: 0;
+  padding-left: 0;
+  border-left: 0;
 }
 
 .contact-methods__header {
-  display: grid;
+  display: none;
   gap: var(--space-sm);
 }
 
@@ -82,8 +101,8 @@
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
 }
 
 .contact-card {
@@ -97,13 +116,6 @@
   background: var(--color-surface);
   box-shadow: var(--shadow-soft);
   transition: var(--motion-transition-card);
-}
-
-.contact-card:hover,
-.contact-card:focus-within {
-  border-color: var(--color-border-hover);
-  background: var(--color-surface-hover);
-  transform: var(--motion-hover-raise);
 }
 
 .contact-card--linkedin,
@@ -142,21 +154,6 @@
   background: var(--color-gold-hover);
   filter: blur(0.35rem);
   opacity: 0.96;
-}
-
-.contact-card--linkedin:hover,
-.contact-card--linkedin:focus-within,
-.contact-card--github:hover,
-.contact-card--github:focus-within,
-.contact-card--email:hover,
-.contact-card--email:focus-within,
-.contact-card--resume:hover,
-.contact-card--resume:focus-within {
-  border-color: rgba(226, 193, 90, 0.86);
-  background:
-    radial-gradient(circle at 50% 118%, rgba(226, 193, 90, 0.4), transparent 18%),
-    radial-gradient(circle at 50% 8%, rgba(25, 64, 98, 0.38), transparent 42%),
-    linear-gradient(145deg, rgba(3, 12, 22, 0.98), rgba(12, 16, 24, 0.98));
 }
 
 .contact-card__icon {
@@ -353,16 +350,8 @@
 }
 
 @media (max-width: 72rem) {
-  .contact-hero__content {
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-  }
-
-  .contact-methods {
-    padding-top: var(--space-lg);
-    padding-left: 0;
-    border-top: 1px solid var(--color-border-hover);
-    border-left: 0;
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -387,7 +376,7 @@
 
   .contact-hero h1 {
     font: var(--type-h1);
-    max-width: 12ch;
+    max-width: 100%;
   }
 
   .contact-hero__introduction {
@@ -396,8 +385,8 @@
   }
 
   .contact-methods {
-    gap: var(--space-lg);
-    padding-top: var(--space-lg);
+    gap: 0;
+    padding-top: 0;
   }
 
   .contact-grid {
@@ -424,11 +413,11 @@
   }
 
   .contact-hero h1 {
-    max-width: 11ch;
+    max-width: 100%;
   }
 
   .contact-hero__introduction {
-    padding-left: var(--space-md);
+    padding-left: 0;
   }
 
   .contact-card {

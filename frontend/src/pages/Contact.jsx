@@ -1,6 +1,6 @@
-import ContactCard from '../components/ContactCard.jsx';
-import { contactMethods } from '../data/contact.js';
-import '../styles/contact.css';
+import ContactCard from "../components/ContactCard.jsx";
+import { contactMethods } from "../data/contact.js";
+import "../styles/contact.css";
 
 function Contact() {
   return (
@@ -8,19 +8,19 @@ function Contact() {
       <section className="contact-hero" aria-labelledby="contact-title">
         <div className="contact-hero__content page-container">
           <div className="contact-hero__copy">
-            <p className="contact-page__eyebrow">Contact</p>
-            <h1 id="contact-title">Professional communication</h1>
+            <p className="contact-page__eyebrow">Let's Connect</p>
+            <h1 id="contact-title">Professional Communication</h1>
             <p className="contact-hero__introduction">
-              Choose the best channel for project discussions, source review, direct email, or current
-              resume requests.
+              Whether you'd like to discuss a project, explore a potential
+              opportunity, or just connect with a fellow developer - I'm always
+              open to a conversation.
             </p>
           </div>
 
-          <div className="contact-methods" aria-labelledby="contact-methods-title">
-            <div className="contact-methods__header">
-              <p className="contact-page__eyebrow">Methods</p>
-              <h2 id="contact-methods-title">Contact Options</h2>
-            </div>
+          <div
+            className="contact-methods"
+            aria-label="Contact options"
+          >
             <div className="contact-grid">
               {contactMethods.map((method) => (
                 <ContactCard key={method.id} method={method} />
