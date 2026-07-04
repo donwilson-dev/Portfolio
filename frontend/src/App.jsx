@@ -11,12 +11,14 @@ import './styles/navigation.css';
 
 function App() {
   const { pathname } = useLocation();
-  const isHomePage = pathname === '/';
+  const usesSharedBackground = ['/', '/about', '/projects', '/contact'].includes(pathname);
 
   return (
     <div
       className={
-        isHomePage ? 'app-shell app-shell--with-page-background app-shell--home' : 'app-shell'
+        usesSharedBackground
+          ? 'app-shell app-shell--with-page-background app-shell--shared-background'
+          : 'app-shell'
       }
     >
       <Navigation />

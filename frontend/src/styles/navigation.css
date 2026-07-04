@@ -11,8 +11,8 @@
   --shell-footer-height: calc(4rem + 2px);
 }
 
-.app-shell--home {
-  --page-background-image: url("../assets/images/backgrounds/background-home-hero.webp");
+.app-shell--shared-background {
+  --page-background-image: url("../assets/images/backgrounds/background.webp");
 }
 
 .app-shell--with-page-background {
