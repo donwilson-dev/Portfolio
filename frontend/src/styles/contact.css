@@ -61,8 +61,19 @@
   width: min(28rem, 70vw);
   height: 1px;
   background:
-    radial-gradient(circle at center, var(--color-gold-hover) 0 0.2rem, transparent 0.22rem),
-    linear-gradient(90deg, transparent, rgba(226, 193, 90, 0.18), var(--color-gold-hover), rgba(226, 193, 90, 0.18), transparent);
+    radial-gradient(
+      circle at center,
+      var(--color-gold-hover) 0 0.2rem,
+      transparent 0.22rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(226, 193, 90, 0.18),
+      var(--color-gold-hover),
+      rgba(226, 193, 90, 0.18),
+      transparent
+    );
   box-shadow: 0 0 1rem rgba(226, 193, 90, 0.52);
   transform: translateX(-50%);
 }
@@ -122,6 +133,7 @@
 .contact-card--github,
 .contact-card--email,
 .contact-card--resume {
+  --contact-card-background-image: none;
   position: relative;
   isolation: isolate;
   min-height: 21.5rem;
@@ -132,13 +144,67 @@
   overflow: hidden;
   border-color: rgba(212, 175, 55, 0.74);
   background:
-    radial-gradient(circle at 50% 118%, rgba(226, 193, 90, 0.34), transparent 17%),
+    radial-gradient(
+      circle at 50% 118%,
+      rgba(226, 193, 90, 0.34),
+      transparent 17%
+    ),
     radial-gradient(circle at 50% 8%, rgba(19, 54, 86, 0.32), transparent 42%),
-    linear-gradient(145deg, rgba(3, 12, 22, 0.98), rgba(10, 14, 22, 0.98));
+    linear-gradient(145deg, rgba(3, 12, 22, 0.05), rgba(10, 14, 22, 0.8)),
+    var(--contact-card-background-image);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   box-shadow:
     inset 0 -0.125rem 0 rgba(226, 193, 90, 0.52),
     0 0.875rem 1.75rem rgba(0, 0, 0, 0.34);
   text-align: center;
+}
+
+.contact-card--linkedin {
+  --contact-card-background-image: url("../assets/images/backgrounds/contacts/contact-linkedin-background.webp");
+  background-position:
+    center,
+    center,
+    center,
+    center -0.1rem;
+  background-size:
+    auto,
+    auto,
+    cover,
+    120% auto;
+}
+
+.contact-card--github {
+  --contact-card-background-image: url("../assets/images/backgrounds/contacts/contact-github-background.webp");
+  background-position:
+    center,
+    center,
+    center,
+    center -0.1rem;
+  background-size:
+    auto,
+    auto,
+    cover,
+    120% auto;
+}
+
+.contact-card--email {
+  --contact-card-background-image: url("../assets/images/backgrounds/contacts/contact-email-background.webp");
+  background-position:
+    center,
+    center,
+    center,
+    center -1.25rem;
+  background-size:
+    auto,
+    auto,
+    cover,
+    105% auto;
+}
+
+.contact-card--resume {
+  --contact-card-background-image: url("../assets/images/backgrounds/contacts/contact-resume-background.webp");
 }
 
 .contact-card--linkedin::after,
@@ -169,7 +235,8 @@
 .contact-card__icon img {
   width: 1.15rem;
   height: 1.15rem;
-  filter: invert(97%) sepia(5%) saturate(116%) hue-rotate(354deg) brightness(97%) contrast(96%);
+  filter: invert(97%) sepia(5%) saturate(116%) hue-rotate(354deg)
+    brightness(97%) contrast(96%);
   transition: var(--motion-transition-media);
 }
 
@@ -182,7 +249,11 @@
   border-color: rgba(226, 193, 90, 0.74);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 34% 28%, rgba(226, 193, 90, 0.16), transparent 14%),
+    radial-gradient(
+      circle at 34% 28%,
+      rgba(226, 193, 90, 0.16),
+      transparent 14%
+    ),
     linear-gradient(145deg, rgba(14, 22, 32, 0.96), rgba(4, 10, 18, 0.96));
   box-shadow: inset 0 0 1.25rem rgba(226, 193, 90, 0.08);
 }
@@ -191,7 +262,8 @@
 .contact-card--github .contact-card__icon img {
   width: 2.75rem;
   height: 2.75rem;
-  filter: invert(77%) sepia(62%) saturate(612%) hue-rotate(359deg) brightness(99%) contrast(94%);
+  filter: invert(77%) sepia(62%) saturate(612%) hue-rotate(359deg)
+    brightness(99%) contrast(94%);
 }
 
 .contact-card--email .contact-card__icon img,
