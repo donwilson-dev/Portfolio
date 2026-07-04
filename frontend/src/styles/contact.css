@@ -106,7 +106,10 @@
   transform: var(--motion-hover-raise);
 }
 
-.contact-card--linkedin {
+.contact-card--linkedin,
+.contact-card--github,
+.contact-card--email,
+.contact-card--resume {
   position: relative;
   isolation: isolate;
   min-height: 21.5rem;
@@ -126,7 +129,10 @@
   text-align: center;
 }
 
-.contact-card--linkedin::after {
+.contact-card--linkedin::after,
+.contact-card--github::after,
+.contact-card--email::after,
+.contact-card--resume::after {
   content: "";
   position: absolute;
   inset: auto 29% -0.125rem;
@@ -139,7 +145,13 @@
 }
 
 .contact-card--linkedin:hover,
-.contact-card--linkedin:focus-within {
+.contact-card--linkedin:focus-within,
+.contact-card--github:hover,
+.contact-card--github:focus-within,
+.contact-card--email:hover,
+.contact-card--email:focus-within,
+.contact-card--resume:hover,
+.contact-card--resume:focus-within {
   border-color: rgba(226, 193, 90, 0.86);
   background:
     radial-gradient(circle at 50% 118%, rgba(226, 193, 90, 0.4), transparent 18%),
@@ -164,7 +176,10 @@
   transition: var(--motion-transition-media);
 }
 
-.contact-card--linkedin .contact-card__icon {
+.contact-card--linkedin .contact-card__icon,
+.contact-card--github .contact-card__icon,
+.contact-card--email .contact-card__icon,
+.contact-card--resume .contact-card__icon {
   width: 5.25rem;
   height: 5.25rem;
   border-color: rgba(226, 193, 90, 0.74);
@@ -175,10 +190,18 @@
   box-shadow: inset 0 0 1.25rem rgba(226, 193, 90, 0.08);
 }
 
-.contact-card--linkedin .contact-card__icon img {
+.contact-card--linkedin .contact-card__icon img,
+.contact-card--github .contact-card__icon img {
   width: 2.75rem;
   height: 2.75rem;
   filter: invert(77%) sepia(62%) saturate(612%) hue-rotate(359deg) brightness(99%) contrast(94%);
+}
+
+.contact-card--email .contact-card__icon img,
+.contact-card--resume .contact-card__icon img {
+  width: 2.75rem;
+  height: 2.75rem;
+  filter: none;
 }
 
 .contact-card__content {
@@ -202,18 +225,27 @@
   font: var(--type-small);
 }
 
-.contact-card--linkedin .contact-card__content {
+.contact-card--linkedin .contact-card__content,
+.contact-card--github .contact-card__content,
+.contact-card--email .contact-card__content,
+.contact-card--resume .contact-card__content {
   justify-items: center;
   gap: var(--space-md);
 }
 
-.contact-card--linkedin .contact-card__content h2 {
+.contact-card--linkedin .contact-card__content h2,
+.contact-card--github .contact-card__content h2,
+.contact-card--email .contact-card__content h2,
+.contact-card--resume .contact-card__content h2 {
   position: relative;
   padding-bottom: var(--space-sm);
   font: var(--type-h3);
 }
 
-.contact-card--linkedin .contact-card__content h2::after {
+.contact-card--linkedin .contact-card__content h2::after,
+.contact-card--github .contact-card__content h2::after,
+.contact-card--email .contact-card__content h2::after,
+.contact-card--resume .contact-card__content h2::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -224,10 +256,23 @@
   transform: translateX(-50%);
 }
 
-.contact-card--linkedin .contact-card__content p {
+.contact-card--linkedin .contact-card__content p,
+.contact-card--github .contact-card__content p,
+.contact-card--email .contact-card__content p,
+.contact-card--resume .contact-card__content p {
   max-width: 14.5rem;
   color: var(--color-text-primary);
   font: var(--type-body);
+}
+
+.contact-card--email .contact-card__content p:not(.contact-card__value) {
+  order: 3;
+}
+
+.contact-card--email .contact-card__content .contact-card__value {
+  order: 2;
+  color: var(--color-gold-primary);
+  font: var(--type-button);
 }
 
 .contact-card__action {
@@ -270,7 +315,10 @@
   transform: scale(var(--motion-active-scale));
 }
 
-.contact-card--linkedin .contact-card__action {
+.contact-card--linkedin .contact-card__action,
+.contact-card--github .contact-card__action,
+.contact-card--email .contact-card__action,
+.contact-card--resume .contact-card__action {
   width: fit-content;
   max-width: 100%;
   min-height: 3rem;
@@ -282,14 +330,23 @@
   box-shadow: var(--shadow-gold-soft);
 }
 
-.contact-card--linkedin .contact-card__action-icon {
+.contact-card--linkedin .contact-card__action-icon,
+.contact-card--github .contact-card__action-icon,
+.contact-card--email .contact-card__action-icon,
+.contact-card--resume .contact-card__action-icon {
   order: -1;
   width: 1.2rem;
   height: 1.2rem;
 }
 
 .contact-card--linkedin .contact-card__action:hover,
-.contact-card--linkedin .contact-card__action:focus-visible {
+.contact-card--linkedin .contact-card__action:focus-visible,
+.contact-card--github .contact-card__action:hover,
+.contact-card--github .contact-card__action:focus-visible,
+.contact-card--email .contact-card__action:hover,
+.contact-card--email .contact-card__action:focus-visible,
+.contact-card--resume .contact-card__action:hover,
+.contact-card--resume .contact-card__action:focus-visible {
   border-color: var(--color-border-hover);
   background: var(--color-surface-hover);
   color: var(--color-gold-hover);
