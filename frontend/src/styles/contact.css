@@ -106,6 +106,47 @@
   transform: var(--motion-hover-raise);
 }
 
+.contact-card--linkedin {
+  position: relative;
+  isolation: isolate;
+  min-height: 21.5rem;
+  justify-items: center;
+  align-content: start;
+  gap: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  overflow: hidden;
+  border-color: rgba(212, 175, 55, 0.74);
+  background:
+    radial-gradient(circle at 50% 118%, rgba(226, 193, 90, 0.34), transparent 17%),
+    radial-gradient(circle at 50% 8%, rgba(19, 54, 86, 0.32), transparent 42%),
+    linear-gradient(145deg, rgba(3, 12, 22, 0.98), rgba(10, 14, 22, 0.98));
+  box-shadow:
+    inset 0 -0.125rem 0 rgba(226, 193, 90, 0.52),
+    0 0.875rem 1.75rem rgba(0, 0, 0, 0.34);
+  text-align: center;
+}
+
+.contact-card--linkedin::after {
+  content: "";
+  position: absolute;
+  inset: auto 29% -0.125rem;
+  z-index: -1;
+  height: 0.35rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold-hover);
+  filter: blur(0.35rem);
+  opacity: 0.96;
+}
+
+.contact-card--linkedin:hover,
+.contact-card--linkedin:focus-within {
+  border-color: rgba(226, 193, 90, 0.86);
+  background:
+    radial-gradient(circle at 50% 118%, rgba(226, 193, 90, 0.4), transparent 18%),
+    radial-gradient(circle at 50% 8%, rgba(25, 64, 98, 0.38), transparent 42%),
+    linear-gradient(145deg, rgba(3, 12, 22, 0.98), rgba(12, 16, 24, 0.98));
+}
+
 .contact-card__icon {
   width: 2.5rem;
   height: 2.5rem;
@@ -121,6 +162,23 @@
   height: 1.15rem;
   filter: invert(97%) sepia(5%) saturate(116%) hue-rotate(354deg) brightness(97%) contrast(96%);
   transition: var(--motion-transition-media);
+}
+
+.contact-card--linkedin .contact-card__icon {
+  width: 5.25rem;
+  height: 5.25rem;
+  border-color: rgba(226, 193, 90, 0.74);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(226, 193, 90, 0.16), transparent 14%),
+    linear-gradient(145deg, rgba(14, 22, 32, 0.96), rgba(4, 10, 18, 0.96));
+  box-shadow: inset 0 0 1.25rem rgba(226, 193, 90, 0.08);
+}
+
+.contact-card--linkedin .contact-card__icon img {
+  width: 2.75rem;
+  height: 2.75rem;
+  filter: invert(77%) sepia(62%) saturate(612%) hue-rotate(359deg) brightness(99%) contrast(94%);
 }
 
 .contact-card__content {
@@ -144,6 +202,34 @@
   font: var(--type-small);
 }
 
+.contact-card--linkedin .contact-card__content {
+  justify-items: center;
+  gap: var(--space-md);
+}
+
+.contact-card--linkedin .contact-card__content h2 {
+  position: relative;
+  padding-bottom: var(--space-sm);
+  font: var(--type-h3);
+}
+
+.contact-card--linkedin .contact-card__content h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 2.25rem;
+  height: 1px;
+  background: var(--color-gold-primary);
+  transform: translateX(-50%);
+}
+
+.contact-card--linkedin .contact-card__content p {
+  max-width: 14.5rem;
+  color: var(--color-text-primary);
+  font: var(--type-body);
+}
+
 .contact-card__action {
   min-height: 2.75rem;
   display: inline-flex;
@@ -160,11 +246,15 @@
   transition: var(--motion-transition-interactive);
 }
 
-.contact-card__action img {
+.contact-card__action-icon {
   width: 1rem;
   height: 1rem;
-  filter: invert(97%) sepia(5%) saturate(116%) hue-rotate(354deg) brightness(97%) contrast(96%);
-  transition: var(--motion-transition-media);
+  flex: 0 0 auto;
+  color: currentColor;
+  transition:
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    opacity var(--motion-duration-base) var(--motion-ease-standard),
+    transform var(--motion-duration-base) var(--motion-ease-standard);
 }
 
 .contact-card__action:hover,
@@ -176,13 +266,33 @@
   transform: var(--motion-hover-raise);
 }
 
-.contact-card__action:hover img,
-.contact-card__action:focus-visible img {
-  filter: invert(82%) sepia(58%) saturate(436%) hue-rotate(1deg) brightness(95%) contrast(88%);
-}
-
 .contact-card__action:active {
   transform: scale(var(--motion-active-scale));
+}
+
+.contact-card--linkedin .contact-card__action {
+  width: fit-content;
+  max-width: 100%;
+  min-height: 3rem;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border-color: var(--color-border-default);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-gold-soft);
+}
+
+.contact-card--linkedin .contact-card__action-icon {
+  order: -1;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.contact-card--linkedin .contact-card__action:hover,
+.contact-card--linkedin .contact-card__action:focus-visible {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-hover);
+  color: var(--color-gold-hover);
 }
 
 @media (max-width: 72rem) {
