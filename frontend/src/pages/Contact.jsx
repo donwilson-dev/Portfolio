@@ -8,8 +8,7 @@ function Contact() {
       <section className="contact-hero" aria-labelledby="contact-title">
         <div className="contact-hero__content page-container">
           <div className="contact-hero__copy">
-            <p className="contact-page__eyebrow">Let's Connect</p>
-            <h1 id="contact-title">Professional Communication</h1>
+            <h1 id="contact-title">Let's Connect</h1>
             <p className="contact-hero__introduction">
               Whether you'd like to discuss a project, explore a potential
               opportunity, or just connect with a fellow developer - I'm always
@@ -17,10 +16,7 @@ function Contact() {
             </p>
           </div>
 
-          <div
-            className="contact-methods"
-            aria-label="Contact options"
-          >
+          <div className="contact-methods" aria-label="Contact options">
             <div className="contact-grid">
               {contactMethods.map((method) => (
                 <ContactCard key={method.id} method={method} />

@@ -32,23 +32,89 @@
 .contact-hero__content {
   position: relative;
   display: grid;
-  gap: var(--space-2xl);
+  gap: var(--space-xl);
   align-content: center;
   align-items: center;
-  padding-block: clamp(var(--space-xl), 5vh, var(--space-3xl));
+  padding-block: 0 clamp(var(--space-xl), 5vh, var(--space-3xl));
 }
 
 .contact-hero__copy {
+  --contact-connect-fade-color: rgba(11, 11, 13, 1);
+  --contact-connect-fade-left: 8rem;
+  --contact-connect-fade-right: 8rem;
+  --contact-connect-fade-top: 4rem;
+  position: relative;
+  isolation: isolate;
   display: grid;
-  justify-items: center;
-  gap: var(--space-sm);
-  text-align: center;
+  justify-items: start;
+  gap: var(--space-md);
+  overflow: hidden;
+  margin-inline: calc(var(--container-gutter) * -1);
+  padding: clamp(var(--space-3xl), 8vh, 6rem) var(--container-gutter)
+    clamp(var(--space-3xl), 7vh, 5rem);
+  text-align: left;
+}
+
+.contact-hero__copy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      var(--contact-connect-fade-color) 0,
+      rgba(11, 11, 13, 0) var(--contact-connect-fade-left),
+      rgba(11, 11, 13, 0) calc(100% - var(--contact-connect-fade-right)),
+      var(--contact-connect-fade-color) 100%
+    ),
+    linear-gradient(
+      180deg,
+      var(--contact-connect-fade-color) 0,
+      rgba(11, 11, 13, 0) var(--contact-connect-fade-top)
+    ),
+    linear-gradient(
+      90deg,
+      rgba(3, 8, 14, 0.1),
+      rgba(3, 8, 14, 0.1) 52%,
+      rgba(3, 8, 14, 0.1)
+    ),
+    linear-gradient(180deg, rgba(3, 8, 14, 1), rgba(3, 8, 14, 0.1)),
+    url("../assets/images/backgrounds/contacts/contact-connect-background.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contact-hero__copy::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 1px;
+  background:
+    radial-gradient(
+      circle at center,
+      var(--color-gold-hover) 0 0.22rem,
+      transparent 0.24rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(226, 193, 90, 0.4),
+      var(--color-gold-hover),
+      rgba(226, 193, 90, 0.4),
+      transparent
+    );
+  box-shadow: 0 0 1.25rem rgba(226, 193, 90, 0.62);
 }
 
 .contact-hero h1 {
   position: relative;
   max-width: 100%;
-  padding-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
   font: var(--type-hero);
   text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.36);
 }
@@ -56,34 +122,20 @@
 .contact-hero h1::after {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 0;
   bottom: 0;
-  width: min(28rem, 70vw);
+  width: 4.75rem;
   height: 1px;
-  background:
-    radial-gradient(
-      circle at center,
-      var(--color-gold-hover) 0 0.2rem,
-      transparent 0.22rem
-    ),
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(226, 193, 90, 0.18),
-      var(--color-gold-hover),
-      rgba(226, 193, 90, 0.18),
-      transparent
-    );
-  box-shadow: 0 0 1rem rgba(226, 193, 90, 0.52);
-  transform: translateX(-50%);
+  background: var(--color-gold-hover);
+  box-shadow: 0 0 0.75rem rgba(226, 193, 90, 0.52);
 }
 
 .contact-hero__introduction {
-  max-width: 52rem;
+  max-width: 26rem;
   margin-top: var(--space-xs);
   padding: 0;
   border-left: 0;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font: var(--type-body-large);
 }
 
@@ -137,8 +189,9 @@
   position: relative;
   isolation: isolate;
   min-height: 21.5rem;
+  grid-template-rows: auto minmax(8.5rem, 1fr) auto;
   justify-items: center;
-  align-content: start;
+  align-content: stretch;
   gap: var(--space-lg);
   padding: var(--space-xl) var(--space-lg) var(--space-lg);
   overflow: hidden;
@@ -298,6 +351,7 @@
 .contact-card--github .contact-card__content,
 .contact-card--email .contact-card__content,
 .contact-card--resume .contact-card__content {
+  align-content: start;
   justify-items: center;
   gap: var(--space-md);
 }
