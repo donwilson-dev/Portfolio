@@ -1,16 +1,6 @@
 .about-page {
   min-height: 100%;
-  background:
-    radial-gradient(
-      circle at 16% 4%,
-      rgba(212, 175, 55, 0.05),
-      transparent 24rem
-    ),
-    radial-gradient(
-      circle at 78% 18%,
-      rgba(74, 144, 226, 0.04),
-      transparent 26rem
-    );
+  background: transparent;
 }
 
 .about-hero {
@@ -21,7 +11,7 @@
       (var(--shell-surface-gap) * 4)
   );
   display: grid;
-  align-items: start;
+  align-items: center;
   overflow: hidden;
   background: transparent;
 }
@@ -380,17 +370,38 @@
     rgba(255, 255, 255, 0.28),
     rgba(255, 255, 255, 0.04)
   );
+  transition: background var(--motion-duration-base) var(--motion-ease-standard);
 }
 
 .technology-group__header::before {
   z-index: 1;
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 5px;
+  height: 5px;
   left: 50%;
   right: auto;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 1px rgba(11, 11, 13, 0.72);
   transform: translate(-50%, 50%);
+  transition:
+    background-color var(--motion-duration-base) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-base) var(--motion-ease-standard);
+}
+
+.technology-group:hover .technology-group__header::after {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, currentColor 0%, transparent),
+    color-mix(in srgb, currentColor 62%, transparent),
+    color-mix(in srgb, currentColor 0%, transparent)
+  );
+}
+
+.technology-group:hover .technology-group__header::before {
+  background: currentColor;
+  box-shadow:
+    0 0 0 1px rgba(11, 11, 13, 0.78),
+    0 0 0.45rem color-mix(in srgb, currentColor 34%, transparent);
 }
 
 .technology-group__icon {
@@ -443,8 +454,14 @@
   padding: var(--space-lg);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
+  background: linear-gradient(
+    135deg,
+    rgba(28, 28, 31, 0.82),
+    rgba(10, 17, 22, 0.72)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    var(--shadow-soft);
   text-align: left;
 }
 
@@ -464,14 +481,21 @@
   overflow: hidden;
   border-radius: var(--radius-md);
   background: var(--color-background-secondary);
-  border: 1px solid var(--color-border-default);
+  border: 1px solid rgba(212, 175, 55, 0.34);
+  box-shadow:
+    inset 0 0 0 1px rgba(11, 11, 13, 0.42),
+    0 0 0 1px rgba(212, 175, 55, 0.08);
   transition: var(--motion-transition-card);
 }
 
 .certificate-card__media:hover,
 .certificate-card__media:focus-visible {
-  border-color: var(--color-border-hover);
+  border-color: rgba(226, 193, 90, 0.82);
   background: var(--color-surface-hover);
+  box-shadow:
+    inset 0 0 0 1px rgba(11, 11, 13, 0.32),
+    0 0 0 1px rgba(226, 193, 90, 0.28),
+    0 0 1.1rem rgba(226, 193, 90, 0.16);
   transform: var(--motion-hover-raise) scale(var(--motion-hover-scale));
 }
 
@@ -579,8 +603,12 @@
 .certificate-card__detail-column h4 img {
   width: 1.75rem;
   height: 1.75rem;
-  filter: invert(77%) sepia(89%) saturate(607%) hue-rotate(359deg)
-    brightness(91%) contrast(84%);
+  filter: invert(72%) sepia(54%) saturate(626%) hue-rotate(7deg) brightness(88%)
+    contrast(89%);
+}
+
+.certificate-card__detail-column h4 img[src*="code"] {
+  filter: none;
 }
 
 .certificate-card__detail-intro {

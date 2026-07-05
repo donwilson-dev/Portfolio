@@ -8,7 +8,7 @@ export const primaryNavigation = [
 export const externalNavigation = [
   {
     label: "GitHub",
-    href: "https://github.com/donwilson-dev",
+    href: "https://github.com/donwilson-dev?tab=repositories",
     icon: "github",
   },
   {
