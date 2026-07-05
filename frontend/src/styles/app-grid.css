@@ -8,8 +8,13 @@
 
 .app-grid__container {
   width: 100%;
-  aspect-ratio: 1;
-  visibility: hidden;
+}
+
+.app-grid__underlayer {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
 }
 
 @media (max-width: 76rem) and (min-width: 48.01rem) {

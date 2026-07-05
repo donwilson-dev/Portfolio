@@ -1,3 +1,4 @@
+import appGridUnderlayer from "../assets/images/app-grid/placeholder-app-icon.webp";
 import "../styles/app-grid.css";
 
 function AppGrid({ className = "" }) {
@@ -5,7 +6,14 @@ function AppGrid({ className = "" }) {
 
   return (
     <div className={classNames} aria-hidden="true">
-      <div className="app-grid__container" />
+      <div className="app-grid__container">
+        <img
+          className="app-grid__underlayer"
+          src={appGridUnderlayer}
+          alt=""
+          draggable="false"
+        />
+      </div>
     </div>
   );
 }
