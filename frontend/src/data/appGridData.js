@@ -1,5 +1,5 @@
-import assetForgeAppIcon from "../assets/images/applications/assetforge-app-icon.webp";
-import foundedAppIcon from "../assets/images/applications/founded-app-icon.webp";
+import assetForgeAppIcon from "../assets/images/app-grid/applications/assetforge-app-icon.webp";
+import foundedAppIcon from "../assets/images/app-grid/applications/founded-app-icon.webp";
 
 export const appGridApplications = [
   {

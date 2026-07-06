@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import arrowLeftIcon from '../assets/icons/arrow-left.svg';
 import arrowRightIcon from '../assets/icons/arrow-right.svg';
 import ProjectCard from './ProjectCard.jsx';
 import {
-  PROJECT_TRACK_SCROLL_KEY,
   PROJECT_TRACK_SELECTED_KEY,
   orderedProjects,
   projectLibrarySettings,
@@ -12,6 +11,8 @@ import {
 
 const scrollAmount = 360;
 const dragThreshold = 8;
+const trackLoopCount = 3;
+const activeTrackSet = 1;
 
 const getScrollBehavior = () => {
   if (typeof window === 'undefined' || !window.matchMedia) {
@@ -38,6 +39,79 @@ function ProjectTrack() {
   const [selectedProject, setSelectedProject] = useState(() => {
     return location.state?.restoreProjectId || sessionStorage.getItem(PROJECT_TRACK_SELECTED_KEY) || null;
   });
+  const trackProjects = useMemo(
+    () =>
+      Array.from({ length: trackLoopCount }, (_, setIndex) =>
+        orderedProjects.map((project, projectIndex) => ({
+          ...project,
+          trackKey: `${project.slug}-${setIndex}`,
+          trackSet: setIndex,
+          trackIndex: projectIndex,
+        })),
+      ).flat(),
+    [],
+  );
+
+  const getSequenceWidth = () => {
+    const track = trackRef.current;
+    if (!track) {
+      return 0;
+    }
+
+    const firstSetCard = track.querySelector('[data-track-set="0"][data-track-index="0"]');
+    const activeSetCard = track.querySelector(
+      `[data-track-set="${activeTrackSet}"][data-track-index="0"]`,
+    );
+
+    if (!firstSetCard || !activeSetCard) {
+      return 0;
+    }
+
+    return activeSetCard.offsetLeft - firstSetCard.offsetLeft;
+  };
+
+  const jumpToScrollLeft = (scrollLeft) => {
+    const track = trackRef.current;
+    if (!track) {
+      return;
+    }
+
+    const previousScrollBehavior = track.style.scrollBehavior;
+    track.style.scrollBehavior = 'auto';
+    track.scrollLeft = scrollLeft;
+    track.style.scrollBehavior = previousScrollBehavior;
+  };
+
+  const normalizeTrackPosition = () => {
+    const track = trackRef.current;
+    const sequenceWidth = getSequenceWidth();
+
+    if (!track || sequenceWidth <= 0) {
+      return;
+    }
+
+    const lowerBoundary = sequenceWidth * 0.5;
+    const upperBoundary = sequenceWidth * 1.5;
+
+    if (track.scrollLeft < lowerBoundary) {
+      jumpToScrollLeft(track.scrollLeft + sequenceWidth);
+    } else if (track.scrollLeft > upperBoundary) {
+      jumpToScrollLeft(track.scrollLeft - sequenceWidth);
+    }
+  };
+
+  const scrollToActiveSetStart = () => {
+    const track = trackRef.current;
+    const activeSetCard = track?.querySelector(
+      `[data-track-set="${activeTrackSet}"][data-track-index="0"]`,
+    );
+
+    if (!track || !activeSetCard) {
+      return;
+    }
+
+    jumpToScrollLeft(activeSetCard.offsetLeft);
+  };
 
   useEffect(() => {
     const track = trackRef.current;
@@ -45,41 +119,49 @@ function ProjectTrack() {
       return;
     }
 
-    const savedScrollLeft = Number(sessionStorage.getItem(PROJECT_TRACK_SCROLL_KEY) || 0);
-    track.scrollLeft = savedScrollLeft;
+    const positionTrack = () => {
+      const projectToRestore = location.state?.restoreProjectId;
+      if (projectToRestore) {
+        const card = track.querySelector(
+          `[data-track-set="${activeTrackSet}"][data-project-slug="${projectToRestore}"]`,
+        );
+        card?.scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+        setSelectedProject(projectToRestore);
+        sessionStorage.setItem(PROJECT_TRACK_SELECTED_KEY, projectToRestore);
+      } else {
+        scrollToActiveSetStart();
+      }
+    };
 
-    const projectToRestore = location.state?.restoreProjectId;
-    if (projectToRestore) {
-      const card = track.querySelector(`[data-project-slug="${projectToRestore}"]`);
-      card?.scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
-      setSelectedProject(projectToRestore);
-      sessionStorage.setItem(PROJECT_TRACK_SELECTED_KEY, projectToRestore);
-    }
+    positionTrack();
+    const frameId = window.requestAnimationFrame(positionTrack);
+    const timerId = window.setTimeout(positionTrack, 120);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.clearTimeout(timerId);
+    };
   }, [location.state]);
 
-  const storeScrollPosition = () => {
-    if (trackRef.current) {
-      sessionStorage.setItem(PROJECT_TRACK_SCROLL_KEY, String(trackRef.current.scrollLeft));
-    }
+  const handleTrackScroll = () => {
+    normalizeTrackPosition();
   };
 
   const selectProject = (projectSlug) => {
     setSelectedProject(projectSlug);
     sessionStorage.setItem(PROJECT_TRACK_SELECTED_KEY, projectSlug);
-    storeScrollPosition();
   };
 
   const scrollTrack = (direction) => {
     trackRef.current?.scrollBy({ left: direction * scrollAmount, behavior: getScrollBehavior() });
-    requestAnimationFrame(storeScrollPosition);
+    window.setTimeout(normalizeTrackPosition, 420);
   };
 
   const viewAllProjects = () => {
     setSelectedProject(null);
     sessionStorage.removeItem(PROJECT_TRACK_SELECTED_KEY);
     if (trackRef.current) {
-      trackRef.current.scrollLeft = 0;
-      storeScrollPosition();
+      scrollToActiveSetStart();
       trackRef.current.focus({ preventScroll: true });
     }
   };
@@ -118,7 +200,7 @@ function ProjectTrack() {
 
     event.preventDefault();
     trackRef.current.scrollLeft = dragState.scrollStart - distance;
-    storeScrollPosition();
+    normalizeTrackPosition();
   };
 
   const endDrag = (event) => {
@@ -142,12 +224,8 @@ function ProjectTrack() {
   };
 
   return (
-    <section className="project-library" aria-labelledby="project-library-title">
+    <section className="project-library" aria-label="Projects">
       <div className="project-library__header">
-        <div>
-          <p className="projects-page__eyebrow">Software Library</p>
-          <h2 id="project-library-title">Projects</h2>
-        </div>
         <div className="project-library__controls" aria-label="Project track controls">
           {projectLibrarySettings.showViewAllControl ? (
             <button type="button" onClick={viewAllProjects}>
@@ -155,7 +233,7 @@ function ProjectTrack() {
             </button>
           ) : null}
           <button
-            className="project-library__icon-button"
+            className="project-library__icon-button project-library__icon-button--previous"
             type="button"
             onClick={() => scrollTrack(-1)}
             aria-label="Scroll projects left"
@@ -164,7 +242,7 @@ function ProjectTrack() {
             <img src={arrowLeftIcon} alt="" aria-hidden="true" />
           </button>
           <button
-            className="project-library__icon-button"
+            className="project-library__icon-button project-library__icon-button--next"
             type="button"
             onClick={() => scrollTrack(1)}
             aria-label="Scroll projects right"
@@ -179,7 +257,7 @@ function ProjectTrack() {
         className="project-track"
         ref={trackRef}
         tabIndex={0}
-        onScroll={storeScrollPosition}
+        onScroll={handleTrackScroll}
         onPointerDown={beginDrag}
         onPointerMove={continueDrag}
         onPointerUp={endDrag}
@@ -188,12 +266,14 @@ function ProjectTrack() {
         onClickCapture={preventClickAfterDrag}
         aria-label="Scrollable project cards"
       >
-        {orderedProjects.map((project) => (
+        {trackProjects.map((project) => (
           <ProjectCard
-            key={project.slug}
+            key={project.trackKey}
             project={project}
             isSelected={project.slug === selectedProject}
             onSelect={() => selectProject(project.slug)}
+            trackSet={project.trackSet}
+            trackIndex={project.trackIndex}
           />
         ))}
       </div>

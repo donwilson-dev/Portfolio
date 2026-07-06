@@ -1,5 +1,5 @@
-import ProjectTrack from '../components/ProjectTrack.jsx';
-import '../styles/projects.css';
+import ProjectTrack from "../components/ProjectTrack.jsx";
+import "../styles/projects.css";
 
 function Projects() {
   return (
@@ -7,12 +7,7 @@ function Projects() {
       <section className="projects-hero" aria-labelledby="projects-title">
         <div className="projects-hero__content page-container">
           <header className="projects-hero__summary">
-            <p className="projects-page__eyebrow">Projects</p>
-            <h1 id="projects-title">Applications and case studies</h1>
-            <p>
-              A focused library of software work with overviews, visual showcases, workflow notes, and source
-              repository references where available.
-            </p>
+            <h1 id="projects-title">Projects</h1>
           </header>
 
           <ProjectTrack />

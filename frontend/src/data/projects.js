@@ -1,5 +1,6 @@
 import assetforgeCard from "../assets/images/project-artwork/assetforge/cards/assetforge-card.webp";
 import assetforgeShowcase from "../assets/images/project-artwork/assetforge/showcase/assetforge-showcase.webp";
+import comingSoonCard from "../assets/images/project-artwork/coming-soon/coming-soon.webp";
 import foundedCard from "../assets/images/project-artwork/founded/cards/founded-card.webp";
 import foundedShowcase from "../assets/images/project-artwork/founded/showcase/founded-showcase.webp";
 import foundedBaselineBuilder from "../assets/images/project-artwork/founded/screenshots/baseline-builder.webp";
@@ -215,10 +216,23 @@ export const projects = [
   },
 ];
 
-export const orderedProjects = [...projects].sort(
-  (first, second) => first.releaseOrder - second.releaseOrder,
-);
+export const comingSoonProjects = Array.from({ length: 7 }, (_, index) => ({
+  title: "Coming Soon",
+  slug: `coming-soon-${index + 1}`,
+  status: "Upcoming",
+  releaseOrder: index + 1,
+  isPlaceholder: true,
+  artwork: {
+    card: comingSoonCard,
+  },
+}));
+
+export const orderedProjects = [
+  ...comingSoonProjects.slice(0, 2),
+  ...projects,
+  ...comingSoonProjects.slice(2),
+];
 
 export function getProjectBySlug(slug) {
-  return orderedProjects.find((project) => project.slug === slug);
+  return projects.find((project) => project.slug === slug);
 }
