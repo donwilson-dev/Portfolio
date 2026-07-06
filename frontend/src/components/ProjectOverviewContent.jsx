@@ -41,7 +41,7 @@ function ProjectOverviewContent({ project }) {
           <Link
             className="project-action project-action--secondary"
             to="/projects"
-            state={{ restoreProjectId: project.slug }}
+            state={{ restoreProjectId: project.slug, restoreTrackScroll: true }}
           >
             <img src={arrowLeftIcon} alt="" aria-hidden="true" />
             Back to Projects

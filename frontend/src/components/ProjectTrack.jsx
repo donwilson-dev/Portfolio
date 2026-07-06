@@ -4,6 +4,7 @@ import arrowLeftIcon from '../assets/icons/arrow-left.svg';
 import arrowRightIcon from '../assets/icons/arrow-right.svg';
 import ProjectCard from './ProjectCard.jsx';
 import {
+  PROJECT_TRACK_SCROLL_KEY,
   PROJECT_TRACK_SELECTED_KEY,
   orderedProjects,
   projectLibrarySettings,
@@ -24,6 +25,12 @@ const getScrollBehavior = () => {
   }
 
   return 'smooth';
+};
+
+const getStoredScrollLeft = () => {
+  const storedScrollLeft = Number(sessionStorage.getItem(PROJECT_TRACK_SCROLL_KEY));
+
+  return Number.isFinite(storedScrollLeft) ? storedScrollLeft : null;
 };
 
 function ProjectTrack() {
@@ -121,11 +128,15 @@ function ProjectTrack() {
 
     const positionTrack = () => {
       const projectToRestore = location.state?.restoreProjectId;
-      if (projectToRestore) {
-        const card = track.querySelector(
-          `[data-track-set="${activeTrackSet}"][data-project-slug="${projectToRestore}"]`,
-        );
-        card?.scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+      const shouldRestoreScroll = Boolean(location.state?.restoreTrackScroll);
+      const restoredScrollLeft = shouldRestoreScroll ? getStoredScrollLeft() : null;
+
+      if (projectToRestore && restoredScrollLeft !== null) {
+        jumpToScrollLeft(restoredScrollLeft);
+        normalizeTrackPosition();
+        setSelectedProject(projectToRestore);
+        sessionStorage.setItem(PROJECT_TRACK_SELECTED_KEY, projectToRestore);
+      } else if (projectToRestore) {
         setSelectedProject(projectToRestore);
         sessionStorage.setItem(PROJECT_TRACK_SELECTED_KEY, projectToRestore);
       } else {
@@ -150,6 +161,9 @@ function ProjectTrack() {
   const selectProject = (projectSlug) => {
     setSelectedProject(projectSlug);
     sessionStorage.setItem(PROJECT_TRACK_SELECTED_KEY, projectSlug);
+    if (trackRef.current) {
+      sessionStorage.setItem(PROJECT_TRACK_SCROLL_KEY, String(trackRef.current.scrollLeft));
+    }
   };
 
   const scrollTrack = (direction) => {
@@ -159,6 +173,7 @@ function ProjectTrack() {
 
   const viewAllProjects = () => {
     setSelectedProject(null);
+    sessionStorage.removeItem(PROJECT_TRACK_SCROLL_KEY);
     sessionStorage.removeItem(PROJECT_TRACK_SELECTED_KEY);
     if (trackRef.current) {
       scrollToActiveSetStart();
