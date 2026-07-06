@@ -32,10 +32,12 @@ function ProjectOverview() {
   }
 
   return (
-    <div className="projects-page projects-page--detail">
-      <div className="page-container">
-        <ProjectOverviewContent project={project} />
-      </div>
+    <div className="projects-page projects-page--overview">
+      <section className="project-overview-hero" aria-labelledby="project-overview-title">
+        <div className="project-overview-hero__content page-container">
+          <ProjectOverviewContent project={project} />
+        </div>
+      </section>
     </div>
   );
 }

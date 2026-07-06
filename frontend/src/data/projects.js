@@ -1,7 +1,9 @@
 import assetforgeCard from "../assets/images/project-artwork/assetforge/cards/assetforge-card.webp";
+import assetforgeIconTitle from "../assets/images/project-artwork/assetforge/logo/assetforge-icon-title.webp";
 import assetforgeShowcase from "../assets/images/project-artwork/assetforge/showcase/assetforge-showcase.webp";
 import comingSoonCard from "../assets/images/project-artwork/coming-soon/coming-soon.webp";
 import foundedCard from "../assets/images/project-artwork/founded/cards/founded-card.webp";
+import foundedIconTitle from "../assets/images/project-artwork/founded/logo/founded-icon-title.webp";
 import foundedShowcase from "../assets/images/project-artwork/founded/showcase/founded-showcase.webp";
 import foundedBaselineBuilder from "../assets/images/project-artwork/founded/screenshots/baseline-builder.webp";
 import foundedDashboard from "../assets/images/project-artwork/founded/screenshots/dashboard.webp";
@@ -21,12 +23,17 @@ export const projects = [
     title: "Founded",
     slug: "founded",
     status: "Completed",
+    cardDescription:
+      "Personal finance planning with projections, scenarios, and payoff optimization.",
+    cardStatus: "Released",
+    cardStatusTone: "released",
     releaseOrder: 1,
     summary:
       "Founded is a scenario-driven planning application focused on comparing baselines, projections, and decision paths through a clean analytical interface.",
     technologyStack: ["React", "JavaScript", "CSS", "Scenario modeling"],
     artwork: {
       card: foundedCard,
+      cardTitleImage: foundedIconTitle,
       showcase: foundedShowcase,
     },
     screenshots: [
@@ -132,12 +139,17 @@ export const projects = [
     title: "AssetForge",
     slug: "assetforge",
     status: "In Development",
+    cardDescription:
+      "Developer asset toolkit for converting, resizing, and optimizing images.",
+    cardStatus: "In Development",
+    cardStatusTone: "development",
     releaseOrder: 2,
     summary:
       "AssetForge is a developing asset-management concept for organizing production-ready visual assets through a focused software workflow.",
     technologyStack: ["React", "JavaScript", "CSS", "Asset workflow design"],
     artwork: {
       card: assetforgeCard,
+      cardTitleImage: assetforgeIconTitle,
       showcase: assetforgeShowcase,
     },
     screenshots: [],
@@ -228,9 +240,8 @@ export const comingSoonProjects = Array.from({ length: 7 }, (_, index) => ({
 }));
 
 export const orderedProjects = [
-  ...comingSoonProjects.slice(0, 2),
   ...projects,
-  ...comingSoonProjects.slice(2),
+  ...comingSoonProjects,
 ];
 
 export function getProjectBySlug(slug) {

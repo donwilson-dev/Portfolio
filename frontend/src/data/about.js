@@ -4,9 +4,9 @@ import salesforceCertificate from "../assets/images/certificates/salesforce-cert
 export const professionalSummary = {
   title: "About Me",
   tagline: "Leader. Problem Solver. Builder.",
-  body: "I enjoy solving complex problems, building scalable solutions, and creating tools that make a real impact. I bring the discipline, adaptability, and mission-focused mindset from 20 years of military service into every software project I build.",
+  body: "After 20 years leading military operations, I transitioned into software development with the same disciplined, mission-focused mindset. Today I build reliable, maintainable applications with thoughtful design.",
   mission:
-    "I build software that solves real problems, simplifies complexity, and creates value for users.",
+    "Create software that feels intuitive, performs reliably, and improves the way people work.",
 };
 
 export const careerBackground = {

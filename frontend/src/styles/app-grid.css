@@ -68,7 +68,7 @@
 }
 
 .app-grid__active-icon--replay {
-  animation: app-grid-active-icon-enter 5s cubic-bezier(0.16, 1, 0.3, 1) 0ms
+  animation: app-grid-active-icon-enter 10s cubic-bezier(0.16, 1, 0.3, 1) 0ms
     both;
 }
 
@@ -78,7 +78,13 @@
   height: auto;
   transform: scaleX(1.09);
   transform-origin: center;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
   user-select: none;
+}
+
+.app-grid__active-icon:hover .app-grid__active-icon-image,
+.app-grid__active-icon:focus-visible .app-grid__active-icon-image {
+  transform: translateY(-0.25rem) scaleX(1.09);
 }
 
 @keyframes app-grid-active-icon-enter {

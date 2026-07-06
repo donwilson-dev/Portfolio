@@ -11,7 +11,9 @@ import './styles/navigation.css';
 
 function App() {
   const { pathname } = useLocation();
-  const usesSharedBackground = ['/', '/about', '/projects', '/contact'].includes(pathname);
+  const usesSharedBackground =
+    ['/', '/about', '/projects', '/contact'].includes(pathname) ||
+    /^\/projects\/[^/]+$/.test(pathname);
 
   return (
     <div

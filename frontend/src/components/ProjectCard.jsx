@@ -1,14 +1,42 @@
 import { Link } from 'react-router-dom';
 
 function ProjectCard({ project, isSelected, onSelect, trackSet, trackIndex }) {
+  const statusClassName = [
+    'project-card__status',
+    project.cardStatusTone ? `project-card__status--${project.cardStatusTone}` : null,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const projectCardClassName = [
+    'project-card',
+    !project.isPlaceholder ? 'project-card--active' : null,
+    isSelected ? 'project-card--selected' : null,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   const cardContent = (
     <>
       <span className="project-card__artwork">
         <img src={project.artwork.card} alt="" loading="lazy" draggable="false" />
       </span>
       <span className="project-card__content">
-        <span className="project-card__title">{project.title}</span>
-        <span className="project-card__status">{project.status}</span>
+        {project.artwork.cardTitleImage ? (
+          <img
+            className="project-card__title-image"
+            src={project.artwork.cardTitleImage}
+            alt={project.title}
+            loading="lazy"
+            draggable="false"
+          />
+        ) : (
+          <span className="project-card__title">{project.title}</span>
+        )}
+        {project.cardDescription ? (
+          <span className="project-card__description">{project.cardDescription}</span>
+        ) : null}
+        <span className={statusClassName}>{project.cardStatus ?? project.status}</span>
       </span>
     </>
   );
@@ -29,7 +57,7 @@ function ProjectCard({ project, isSelected, onSelect, trackSet, trackIndex }) {
 
   return (
     <Link
-      className={isSelected ? 'project-card project-card--selected' : 'project-card'}
+      className={projectCardClassName}
       data-project-slug={project.slug}
       data-track-set={trackSet}
       data-track-index={trackIndex}
