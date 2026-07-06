@@ -259,6 +259,10 @@
   color: var(--color-gold-primary);
 }
 
+.timeline-item:not(:first-child) .timeline-item__icon {
+  width: 2.45rem;
+}
+
 .timeline-item__dot {
   position: relative;
   z-index: 1;
@@ -405,8 +409,8 @@
 }
 
 .technology-group__icon {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.45rem;
+  height: 2.45rem;
 }
 
 .technology-group h3 {
@@ -765,6 +769,10 @@
     width: 2.5rem;
     height: 2.5rem;
     margin-top: 0.1rem;
+  }
+
+  .timeline-item:not(:first-child) .timeline-item__icon {
+    width: 2.05rem;
   }
 
   .timeline-item__dot {
