@@ -24,6 +24,8 @@ function ProjectOverviewContent({ project }) {
   const activeScreenshot = screenshots[activeScreenshotIndex] ?? null;
   const expandedScreenshot =
     expandedScreenshotIndex === null ? null : screenshots[expandedScreenshotIndex];
+  const releaseNotes = project.releaseNotes ?? null;
+  const lessonsLearned = project.lessonsLearned ?? null;
   const glance = project.glance ?? {};
   const glanceRows = [
     {
@@ -240,9 +242,69 @@ function ProjectOverviewContent({ project }) {
             hidden={activeTab !== 'release-notes'}
           >
             <div className="project-overview__dashboard project-overview__dashboard--single">
-              <section className="project-detail-card project-detail-card--pending" aria-labelledby="project-release-notes-title">
-                <h2 id="project-release-notes-title">Release Notes</h2>
-                <p>Pending</p>
+              <section className="project-detail-card project-release-notes" aria-labelledby="project-release-notes-title">
+                <div className="project-release-notes__header">
+                  <div>
+                    <p className="project-release-notes__eyebrow">{releaseNotes?.version ?? 'Release Notes'}</p>
+                    <h2 id="project-release-notes-title">{releaseNotes?.title ?? 'Release Notes'}</h2>
+                  </div>
+                  {releaseNotes?.date ? (
+                    <p className="project-release-notes__date">Release Date: {releaseNotes.date}</p>
+                  ) : null}
+                </div>
+
+                {releaseNotes ? (
+                  <>
+                    {releaseNotes.overview?.map((paragraph) => (
+                      <p className="project-release-notes__intro" key={paragraph}>
+                        {paragraph}
+                      </p>
+                    ))}
+
+                    <div className="project-release-notes__sections">
+                      {releaseNotes.sections.map((section) => (
+                        <article className="project-release-notes__section" key={section.title}>
+                          <h3>{section.title}</h3>
+                          {section.description?.map((paragraph) => (
+                            <p key={paragraph}>{paragraph}</p>
+                          ))}
+                          {section.items ? (
+                            <ul>
+                              {section.items.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          ) : null}
+                          {section.groups ? (
+                            <div className="project-release-notes__groups">
+                              {section.groups.map((group) => (
+                                <div className="project-release-notes__group" key={group.title}>
+                                  <h4>{group.title}</h4>
+                                  <ul>
+                                    {group.items.map((item) => (
+                                      <li key={item}>{item}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            </div>
+                          ) : null}
+                        </article>
+                      ))}
+                    </div>
+
+                    {releaseNotes.license ? (
+                      <aside className="project-release-notes__license">
+                        <h3>{releaseNotes.license.title}</h3>
+                        {releaseNotes.license.description.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </aside>
+                    ) : null}
+                  </>
+                ) : (
+                  <p>Pending</p>
+                )}
               </section>
             </div>
           </section>
@@ -255,9 +317,69 @@ function ProjectOverviewContent({ project }) {
             hidden={activeTab !== 'lessons-learned'}
           >
             <div className="project-overview__dashboard project-overview__dashboard--single">
-              <section className="project-detail-card project-detail-card--pending" aria-labelledby="project-lessons-title">
-                <h2 id="project-lessons-title">Lessons Learned</h2>
-                <p>Pending</p>
+              <section className="project-detail-card project-lessons" aria-labelledby="project-lessons-title">
+                <div className="project-lessons__header">
+                  <div>
+                    <p className="project-lessons__eyebrow">{lessonsLearned?.version ?? 'Lessons Learned'}</p>
+                    <h2 id="project-lessons-title">{lessonsLearned?.title ?? 'Lessons Learned'}</h2>
+                  </div>
+                  {lessonsLearned?.author ? (
+                    <p className="project-lessons__author">Author: {lessonsLearned.author}</p>
+                  ) : null}
+                </div>
+
+                {lessonsLearned ? (
+                  <>
+                    <div className="project-lessons__overview">
+                      {lessonsLearned.overview?.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+
+                    <div className="project-lessons__grid">
+                      {lessonsLearned.lessons.map((lesson, index) => (
+                        <article className="project-lessons__item" key={lesson.title}>
+                          <p className="project-lessons__number">{String(index + 1).padStart(2, '0')}</p>
+                          <h3>{lesson.title}</h3>
+                          {lesson.description.map((paragraph) => (
+                            <p key={paragraph}>{paragraph}</p>
+                          ))}
+                          {lesson.items ? (
+                            <ul>
+                              {lesson.items.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          ) : null}
+                        </article>
+                      ))}
+                    </div>
+
+                    <div className="project-lessons__footer-grid">
+                      {lessonsLearned.technicalGrowth ? (
+                        <article className="project-lessons__support">
+                          <h3>{lessonsLearned.technicalGrowth.title}</h3>
+                          <ul>
+                            {lessonsLearned.technicalGrowth.items.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                        </article>
+                      ) : null}
+
+                      {lessonsLearned.reflection ? (
+                        <article className="project-lessons__support project-lessons__support--reflection">
+                          <h3>{lessonsLearned.reflection.title}</h3>
+                          {lessonsLearned.reflection.description.map((paragraph) => (
+                            <p key={paragraph}>{paragraph}</p>
+                          ))}
+                        </article>
+                      ) : null}
+                    </div>
+                  </>
+                ) : (
+                  <p>Pending</p>
+                )}
               </section>
             </div>
           </section>
