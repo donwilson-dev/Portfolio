@@ -156,7 +156,7 @@
       rgba(3, 8, 14, 0.1)
     ),
     linear-gradient(180deg, rgba(3, 8, 14, 1), rgba(3, 8, 14, 0.1)),
-    url("../assets/images/backgrounds/projects/digitial-landscape.webp");
+    url("../assets/images/backgrounds/projects/digital-landscape.webp");
   background-position: center var(--projects-landscape-image-position-y);
   background-size: cover;
   background-repeat: no-repeat;

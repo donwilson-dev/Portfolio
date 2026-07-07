@@ -149,7 +149,7 @@ function ProjectOverviewContent({ project }) {
                             <span className="project-glance-list__architecture">
                               {row.value.map((item, index) => (
                                 <span className="project-glance-list__architecture-item" key={item}>
-                                  {index > 0 && index < 3 ? (
+                                  {index > 0 ? (
                                     <span className="project-glance-list__architecture-dot" aria-hidden="true" />
                                   ) : null}
                                   {item}
