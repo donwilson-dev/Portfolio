@@ -182,13 +182,18 @@ function ProjectOverviewContent({ project }) {
             hidden={activeTab !== 'features'}
           >
             <div className="project-overview__dashboard project-overview__dashboard--features">
-              <section className="project-detail-card project-detail-card--scroll" aria-labelledby="project-walkthrough-title">
+              <section className="project-detail-card project-detail-card--scroll project-walkthrough-card" aria-labelledby="project-walkthrough-title">
                 <h2 id="project-walkthrough-title">Walkthrough</h2>
                 {activeScreenshot ? (
-                  <>
+                  <div className="project-walkthrough-card__content">
                     <h3>{activeScreenshot.title}</h3>
+                    {activeScreenshot.summaryTitle ? (
+                      <p className="project-walkthrough-card__summary-title">
+                        {activeScreenshot.summaryTitle}
+                      </p>
+                    ) : null}
                     <p>{activeScreenshot.description}</p>
-                  </>
+                  </div>
                 ) : (
                   <p>{project.screenshotPlaceholder}</p>
                 )}

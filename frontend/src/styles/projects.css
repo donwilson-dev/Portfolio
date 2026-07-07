@@ -929,8 +929,73 @@
   font: var(--type-small);
 }
 
+.project-walkthrough-card {
+  gap: var(--space-md);
+}
+
+.project-walkthrough-card h2 {
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.32);
+}
+
+.project-walkthrough-card__content {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.project-walkthrough-card__content h3 {
+  color: var(--color-text-primary);
+  font: var(--type-h4);
+}
+
+.project-walkthrough-card__summary-title {
+  width: fit-content;
+  margin-top: 0;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--color-gold-hover);
+  color: var(--color-gold-hover);
+  font: var(--type-navigation);
+  background: transparent;
+  box-shadow: 0 0.45rem 0.85rem -0.8rem rgba(226, 193, 90, 0.7);
+}
+
+.project-walkthrough-card__content p:not(.project-walkthrough-card__summary-title) {
+  max-width: 20rem;
+  color: var(--color-text-secondary);
+  font: var(--type-body);
+  line-height: 1.55;
+}
+
 .project-release-notes {
+  --project-release-notes-viewer-height: min(38rem, calc(100svh - 25rem));
   gap: var(--space-lg);
+  max-height: var(--project-release-notes-viewer-height);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: rgba(255, 255, 255, 0.42) transparent;
+  scrollbar-width: thin;
+}
+
+.project-release-notes::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+.project-release-notes::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.project-release-notes::-webkit-scrollbar-thumb {
+  border: 0.18rem solid transparent;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.42);
+  background-clip: padding-box;
+}
+
+.project-release-notes::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-hover);
+  background-clip: padding-box;
 }
 
 .project-release-notes__header {
@@ -961,12 +1026,15 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-md);
+  align-items: stretch;
 }
 
 .project-release-notes__section,
 .project-release-notes__license {
   display: grid;
-  gap: var(--space-sm);
+  align-content: start;
+  align-items: start;
+  gap: var(--space-xs);
   min-height: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border-default);
@@ -985,10 +1053,15 @@
   font: var(--type-navigation);
 }
 
+.project-release-notes__section p,
+.project-release-notes__license p {
+  margin: 0;
+}
+
 .project-release-notes__section ul,
 .project-release-notes__group ul {
   display: grid;
-  gap: var(--space-2xs);
+  gap: 0.45rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1018,11 +1091,15 @@
 .project-release-notes__groups {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-sm);
+  align-items: start;
+  gap: var(--space-lg);
+  margin-top: var(--space-xs);
 }
 
 .project-release-notes__group {
   display: grid;
+  align-content: start;
+  align-items: start;
   gap: var(--space-xs);
 }
 

@@ -114,6 +114,23 @@ export const projects = [
           items: ["CSV", "Microsoft Excel", "PDF"],
         },
         {
+          title: "Technology Stack",
+          groups: [
+            {
+              title: "Frontend",
+              items: ["React", "Vite", "JavaScript"],
+            },
+            {
+              title: "Backend",
+              items: ["Node.js", "Express"],
+            },
+            {
+              title: "Database",
+              items: ["MongoDB Community Server"],
+            },
+          ],
+        },
+        {
           title: "Technical Highlights",
           items: [
             "React frontend",
@@ -167,23 +184,6 @@ export const projects = [
             "Budget automation",
             "Tax planning",
             "Multi-user collaboration",
-          ],
-        },
-        {
-          title: "Technology Stack",
-          groups: [
-            {
-              title: "Frontend",
-              items: ["React", "Vite", "JavaScript"],
-            },
-            {
-              title: "Backend",
-              items: ["Node.js", "Express"],
-            },
-            {
-              title: "Database",
-              items: ["MongoDB Community Server"],
-            },
           ],
         },
       ],
@@ -335,26 +335,30 @@ export const projects = [
       {
         title: "Home",
         image: foundedHome,
+        summaryTitle: "Application Hub",
         description:
-          "Application Hub - Provides a centralized entry point into the platform, surfacing financial summaries and quick access to the core planning, forecasting, and analysis tools.",
+          "Provides a centralized entry point into the platform, surfacing financial summaries and quick access to the core planning, forecasting, and analysis tools.",
       },
       {
         title: "Dashboard",
         image: foundedDashboard,
+        summaryTitle: "Projection Analytics",
         description:
-          "Projection Analytics - Visualizes long-term financial forecasts through interactive charts, cash flow analysis, debt payoff tracking, milestone insights, and scenario comparisons.",
+          "Visualizes long-term financial forecasts through interactive charts, cash flow analysis, debt payoff tracking, milestone insights, and scenario comparisons.",
       },
       {
         title: "Baseline Builder",
         image: foundedBaselineBuilder,
+        summaryTitle: "Financial Data Model",
         description:
-          "Financial Data Model - Establishes the application's financial source of truth by managing accounts, income, debts, bills, and transfers that power every projection and scenario.",
+          "Establishes the application's financial source of truth by managing accounts, income, debts, bills, and transfers that power every projection and scenario.",
       },
       {
         title: "Scenario Builder",
         image: foundedScenarioBuilder,
+        summaryTitle: "Scenario Comparison Engine",
         description:
-          "Scenario Comparison Engine - Models alternate financial outcomes through isolated deviations, enabling side-by-side comparison without modifying the original financial baseline.",
+          "Models alternate financial outcomes through isolated deviations, enabling side-by-side comparison without modifying the original financial baseline.",
       },
     ],
     githubUrl: "https://github.com/donwilson-dev/founded",
