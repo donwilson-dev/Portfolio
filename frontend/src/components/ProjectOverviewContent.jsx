@@ -6,7 +6,8 @@ import ImageViewer from './ImageViewer.jsx';
 const projectOverviewTabs = [
   { id: 'overview', label: 'Overview' },
   { id: 'features', label: 'Screenshots' },
-  { id: 'summary', label: 'Summary' },
+  { id: 'release-notes', label: 'Release Notes' },
+  { id: 'lessons-learned', label: 'Lessons Learned' },
 ];
 
 function ProjectOverviewContent({ project }) {
@@ -19,12 +20,39 @@ function ProjectOverviewContent({ project }) {
   ]
     .filter(Boolean)
     .join(' ');
-  const keyHighlights = project.showcase?.features ?? [];
   const screenshots = project.screenshots ?? [];
   const activeScreenshot = screenshots[activeScreenshotIndex] ?? null;
   const expandedScreenshot =
     expandedScreenshotIndex === null ? null : screenshots[expandedScreenshotIndex];
-  const aboutCopy = project.showcase?.overview ?? project.summary;
+  const glance = project.glance ?? {};
+  const glanceRows = [
+    {
+      key: 'status',
+      label: 'Status',
+      value: project.cardStatus ?? project.status,
+      tone: project.cardStatusTone ?? 'default',
+    },
+    {
+      key: 'type',
+      label: 'Type',
+      value: glance.type ?? project.title,
+    },
+    {
+      key: 'architecture',
+      label: 'Architecture',
+      value: glance.architecture ?? project.technologyStack,
+    },
+    {
+      key: 'highlights',
+      label: 'Highlights',
+      value: glance.highlights ?? [],
+    },
+    {
+      key: 'version',
+      label: 'Version',
+      value: glance.version ?? 'Pending',
+    },
+  ];
 
   const viewAdjacentScreenshot = (direction) => {
     setExpandedScreenshotIndex((currentIndex) => {
@@ -93,6 +121,54 @@ function ProjectOverviewContent({ project }) {
               <section className="project-overview__brand-preview" aria-label={`${project.title} overview`}>
                 <img src={project.artwork.showcase} alt="" />
               </section>
+
+              <aside className="project-detail-card project-detail-card--glance" aria-labelledby="project-overview-glance-title">
+                <h2 id="project-overview-glance-title">At a Glance</h2>
+                <dl className="project-glance-list">
+                  {glanceRows.map((row) => (
+                    <div
+                      className={`project-glance-list__row project-glance-list__row--${row.key}${
+                        row.tone ? ` project-glance-list__row--${row.tone}` : ''
+                      }`}
+                      key={row.key}
+                    >
+                      <dt>{row.label}</dt>
+                      <dd>
+                        {row.key === 'status' ? (
+                          <span className={statusClassName}>{row.value}</span>
+                        ) : Array.isArray(row.value) ? (
+                          row.key === 'highlights' ? (
+                            <ul className="project-glance-list__bullets">
+                              {row.value.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          ) : row.key === 'architecture' ? (
+                            <span className="project-glance-list__architecture">
+                              {row.value.map((item, index) => (
+                                <span className="project-glance-list__architecture-item" key={item}>
+                                  {index > 0 && index < 3 ? (
+                                    <span className="project-glance-list__architecture-dot" aria-hidden="true" />
+                                  ) : null}
+                                  {item}
+                                </span>
+                              ))}
+                            </span>
+                          ) : (
+                            <span className="project-glance-list__inline">
+                              {row.value.map((item) => (
+                                <span key={item}>{item}</span>
+                              ))}
+                            </span>
+                          )
+                        ) : (
+                          row.value
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </aside>
             </div>
           </section>
 
@@ -134,81 +210,53 @@ function ProjectOverviewContent({ project }) {
                     <img src={project.artwork.showcase} alt="" />
                   </div>
                 )}
-
-                {screenshots.length > 0 ? (
-                  <div className="project-feature-thumbnails" aria-label="Select screenshot">
-                    {screenshots.map((screenshot, index) => (
-                      <button
-                        className="project-feature-thumbnail"
-                        type="button"
-                        key={screenshot.title}
-                        aria-current={activeScreenshotIndex === index ? 'true' : undefined}
-                        onClick={() => setActiveScreenshotIndex(index)}
-                      >
-                        <img src={screenshot.image} alt="" />
-                        <span>{screenshot.title}</span>
-                      </button>
-                    ))}
-                  </div>
-                ) : null}
               </section>
+
+              {screenshots.length > 0 ? (
+                <div className="project-detail-card project-feature-thumbnails" aria-label="Select screenshot">
+                  {screenshots.map((screenshot, index) => (
+                    <button
+                      className="project-feature-thumbnail"
+                      type="button"
+                      key={screenshot.title}
+                      aria-current={activeScreenshotIndex === index ? 'true' : undefined}
+                      onClick={() => setActiveScreenshotIndex(index)}
+                    >
+                      <img src={screenshot.image} alt="" />
+                      <span>{screenshot.title}</span>
+                    </button>
+                  ))}
+                </div>
+              ) : null}
 
             </div>
           </section>
 
           <section
             className="project-overview__tab-panel"
-            id="project-panel-summary"
+            id="project-panel-release-notes"
             role="tabpanel"
-            aria-labelledby="project-tab-summary"
-          hidden={activeTab !== 'summary'}
-        >
-          <div className="project-overview__dashboard project-overview__dashboard--summary">
-              <section className="project-detail-card project-detail-card--scroll" aria-labelledby="project-summary-about-title">
-                <h2 id="project-summary-about-title">About</h2>
-                <p>{aboutCopy}</p>
-                <h3>Key Highlights</h3>
-                <ul className="project-highlight-list">
-                  {keyHighlights.map((highlight) => (
-                    <li key={highlight.title}>
-                      <span>{highlight.title}</span>
-                      {highlight.description}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              <aside className="project-detail-card project-detail-card--glance" aria-labelledby="project-summary-glance-title">
-                <h2 id="project-summary-glance-title">At a Glance</h2>
-                <dl className="project-glance-list">
-                  <div>
-                    <dt>Status</dt>
-                    <dd>
-                      <span className={statusClassName}>{project.cardStatus ?? project.status}</span>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Project</dt>
-                    <dd>{project.title}</dd>
-                  </div>
-                  <div>
-                    <dt>Stack</dt>
-                    <dd>{project.technologyStack.join(', ')}</dd>
-                  </div>
-                  <div>
-                    <dt>Release</dt>
-                    <dd>{project.cardStatus ?? project.status}</dd>
-                  </div>
-                </dl>
-              </aside>
-
-              <section className="project-detail-card project-detail-card--pending" aria-labelledby="project-lessons-title">
-                <h2 id="project-lessons-title">Lessons Learned</h2>
-                <p>Pending</p>
-              </section>
-
+            aria-labelledby="project-tab-release-notes"
+            hidden={activeTab !== 'release-notes'}
+          >
+            <div className="project-overview__dashboard project-overview__dashboard--single">
               <section className="project-detail-card project-detail-card--pending" aria-labelledby="project-release-notes-title">
                 <h2 id="project-release-notes-title">Release Notes</h2>
+                <p>Pending</p>
+              </section>
+            </div>
+          </section>
+
+          <section
+            className="project-overview__tab-panel"
+            id="project-panel-lessons-learned"
+            role="tabpanel"
+            aria-labelledby="project-tab-lessons-learned"
+            hidden={activeTab !== 'lessons-learned'}
+          >
+            <div className="project-overview__dashboard project-overview__dashboard--single">
+              <section className="project-detail-card project-detail-card--pending" aria-labelledby="project-lessons-title">
+                <h2 id="project-lessons-title">Lessons Learned</h2>
                 <p>Pending</p>
               </section>
             </div>

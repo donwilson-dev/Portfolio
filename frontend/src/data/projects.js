@@ -31,6 +31,17 @@ export const projects = [
     summary:
       "Founded is a scenario-driven planning application focused on comparing baselines, projections, and decision paths through a clean analytical interface.",
     technologyStack: ["React", "JavaScript", "CSS", "Scenario modeling"],
+    glance: {
+      type: "Financial Planning Platform",
+      architecture: ["React", "Node.js", "Express", "MongoDB"],
+      highlights: [
+        "Financial Forecasting",
+        "Scenario Modeling",
+        "Debt Payoff Engine",
+        "Interactive Analytics",
+      ],
+      version: "v1.0.0",
+    },
     artwork: {
       card: foundedCard,
       cardTitleImage: foundedIconTitle,
@@ -40,23 +51,26 @@ export const projects = [
       {
         title: "Home",
         image: foundedHome,
-        description: "Entry point for the Founded application experience.",
+        description:
+          "Application Hub - Provides a centralized entry point into the platform, surfacing financial summaries and quick access to the core planning, forecasting, and analysis tools.",
       },
       {
         title: "Dashboard",
         image: foundedDashboard,
-        description: "Summary workspace for reviewing modeled outcomes.",
+        description:
+          "Projection Analytics - Visualizes long-term financial forecasts through interactive charts, cash flow analysis, debt payoff tracking, milestone insights, and scenario comparisons.",
       },
       {
         title: "Baseline Builder",
         image: foundedBaselineBuilder,
-        description: "Structured builder for defining baseline assumptions.",
+        description:
+          "Financial Data Model - Establishes the application's financial source of truth by managing accounts, income, debts, bills, and transfers that power every projection and scenario.",
       },
       {
         title: "Scenario Builder",
         image: foundedScenarioBuilder,
         description:
-          "Scenario authoring interface for comparing alternate paths.",
+          "Scenario Comparison Engine - Models alternate financial outcomes through isolated deviations, enabling side-by-side comparison without modifying the original financial baseline.",
       },
     ],
     githubUrl: "https://github.com/donwilson-dev/founded",
@@ -147,6 +161,17 @@ export const projects = [
     summary:
       "AssetForge is a developing asset-management concept for organizing production-ready visual assets through a focused software workflow.",
     technologyStack: ["React", "JavaScript", "CSS", "Asset workflow design"],
+    glance: {
+      type: "Developer Asset Toolkit",
+      architecture: ["React", "JavaScript", "CSS", "Asset workflow design"],
+      highlights: [
+        "Asset Conversion",
+        "Image Optimization",
+        "Workflow Organization",
+        "Export Preparation",
+      ],
+      version: "Pending",
+    },
     artwork: {
       card: assetforgeCard,
       cardTitleImage: assetforgeIconTitle,
@@ -239,10 +264,7 @@ export const comingSoonProjects = Array.from({ length: 7 }, (_, index) => ({
   },
 }));
 
-export const orderedProjects = [
-  ...projects,
-  ...comingSoonProjects,
-];
+export const orderedProjects = [...projects, ...comingSoonProjects];
 
 export function getProjectBySlug(slug) {
   return projects.find((project) => project.slug === slug);
