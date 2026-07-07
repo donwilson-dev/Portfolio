@@ -8,6 +8,14 @@ The site serves as a central hub for showcasing software projects, technical ski
 
 ---
 
+## Live Website
+
+🌐 **https://donwilson-dev.com**
+
+Explore the live portfolio to view featured applications, project documentation, certifications, and ongoing software development work.
+
+---
+
 ## Features
 
 - Responsive desktop, tablet, and mobile layouts
@@ -67,7 +75,7 @@ frontend/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/<username>/<repository>.git
+git clone https://github.com/donwilson-dev/Portfolio.git
 ```
 
 ### Install dependencies
@@ -144,11 +152,3 @@ This project is licensed under the MIT License.
 See the LICENSE file for details.
 
 ---
-
-## Author
-
-**donwilson-dev**
-
-GitHub: https://github.com/donwilson-dev
-
-LinkedIn: https://www.linkedin.com/in/don-wilson
