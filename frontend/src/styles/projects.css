@@ -595,6 +595,13 @@
   min-width: 0;
 }
 
+.project-overview__section-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
 .project-overview__header-nav > .project-action {
   flex: 0 0 auto;
   min-height: 3rem;
@@ -816,6 +823,45 @@
 .project-overview__tab[aria-selected="true"]::after {
   background: var(--color-gold-hover);
   box-shadow: 0 0 0.75rem rgba(226, 193, 90, 0.52);
+}
+
+.project-overview__tab--external {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 2.75rem;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.project-overview__tab--external::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  background: rgb(61, 194, 255);
+  transition: var(--motion-transition-media);
+  -webkit-mask: url("../assets/icons/globe-svgrepo-com.svg") center / contain no-repeat;
+  mask: url("../assets/icons/globe-svgrepo-com.svg") center / contain no-repeat;
+}
+
+.project-overview__tab--external::after {
+  display: none;
+}
+
+.project-overview__tab--external:hover,
+.project-overview__tab--external:focus-visible {
+  background: var(--color-surface);
+  color: var(--color-gold-hover);
+  text-decoration: none;
+  transform: var(--motion-hover-raise);
+}
+
+.project-overview__tab--external:hover::before,
+.project-overview__tab--external:focus-visible::before {
+  background: var(--color-gold-hover);
 }
 
 .project-overview__tab-panel {
@@ -1482,6 +1528,34 @@
   mask-image: url("../assets/icons/tag-svgrepo-com.svg");
 }
 
+.project-glance-list__row--version:has(.project-glance-list__github:hover),
+.project-glance-list__row--version:has(.project-glance-list__github:focus-visible) {
+  border-bottom-color: var(--color-border-default);
+}
+
+.project-glance-list__row--version:has(.project-glance-list__github:hover)::before,
+.project-glance-list__row--version:has(
+    .project-glance-list__github:focus-visible
+  )::before {
+  border-color: rgba(255, 255, 255, 0.07);
+  background:
+    radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--glance-icon-color) 20%, transparent),
+      transparent 62%
+    ),
+    rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transform: none;
+}
+
+.project-glance-list__row--version:has(.project-glance-list__github:hover)::after,
+.project-glance-list__row--version:has(
+    .project-glance-list__github:focus-visible
+  )::after {
+  transform: none;
+}
+
 .project-glance-list__inline {
   display: flex;
   flex-wrap: wrap;
@@ -1529,6 +1603,50 @@
   height: 0.25rem;
   border-radius: 50%;
   background: var(--glance-icon-color);
+}
+
+.project-glance-list__version {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.project-glance-list__github {
+  min-height: 2.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: auto;
+  margin-right: var(--space-xs);
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font: var(--type-navigation);
+  text-decoration: none;
+  transition: var(--motion-transition-interactive);
+}
+
+.project-glance-list__github img {
+  width: 1rem;
+  height: 1rem;
+  filter: invert(89%) sepia(8%) saturate(101%) hue-rotate(201deg)
+    brightness(89%) contrast(86%);
+  transition: var(--motion-transition-media);
+}
+
+.project-glance-list__github:hover,
+.project-glance-list__github:focus-visible {
+  background: var(--color-surface);
+  color: var(--color-gold-hover);
+  text-decoration: none;
+  transform: var(--motion-hover-raise);
+}
+
+.project-glance-list__github:hover img,
+.project-glance-list__github:focus-visible img {
+  filter: invert(82%) sepia(58%) saturate(436%) hue-rotate(1deg) brightness(95%)
+    contrast(88%);
 }
 
 .project-glance-list__bullets {
@@ -1908,6 +2026,11 @@
 @media (max-width: 48rem) {
   .projects-page--detail {
     padding-block: var(--space-xl) var(--space-2xl);
+  }
+
+  #project-tab-features,
+  #project-panel-features {
+    display: none;
   }
 
   .project-overview-hero {

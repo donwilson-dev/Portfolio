@@ -2,7 +2,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Footer from './components/Footer.jsx';
 import Navigation from './components/Navigation.jsx';
 import About from './pages/About.jsx';
-import ApplicationShowcase from './pages/ApplicationShowcase.jsx';
 import Contact from './pages/Contact.jsx';
 import Home from './pages/Home.jsx';
 import ProjectOverview from './pages/ProjectOverview.jsx';
@@ -31,7 +30,6 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects/:projectId" element={<ProjectOverview />} />
-          <Route path="/projects/:projectId/showcase" element={<ApplicationShowcase />} />
         </Routes>
       </main>
       <Footer />

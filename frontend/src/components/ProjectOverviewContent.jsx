@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import arrowLeftIcon from '../assets/icons/arrow-left.svg';
+import githubIcon from '../assets/icons/github.svg';
 import ImageViewer from './ImageViewer.jsx';
 
 const projectOverviewTabs = [
@@ -12,6 +13,7 @@ const projectOverviewTabs = [
 
 function ProjectOverviewContent({ project }) {
   const [activeTab, setActiveTab] = useState(projectOverviewTabs[0].id);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [activeScreenshotIndex, setActiveScreenshotIndex] = useState(0);
   const [expandedScreenshotIndex, setExpandedScreenshotIndex] = useState(null);
   const statusClassName = [
@@ -27,6 +29,11 @@ function ProjectOverviewContent({ project }) {
   const releaseNotes = project.releaseNotes ?? null;
   const lessonsLearned = project.lessonsLearned ?? null;
   const glance = project.glance ?? {};
+  const isReleased = (project.cardStatus ?? project.status)?.toLowerCase() === 'released';
+  const showGithubLink = isReleased && Boolean(project.githubUrl);
+  const visibleProjectOverviewTabs = isMobileViewport
+    ? projectOverviewTabs.filter((tab) => tab.id !== 'features')
+    : projectOverviewTabs;
   const glanceRows = [
     {
       key: 'status',
@@ -66,6 +73,24 @@ function ProjectOverviewContent({ project }) {
     });
   };
 
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 48rem)');
+    const updateViewportState = () => setIsMobileViewport(mobileQuery.matches);
+
+    updateViewportState();
+    mobileQuery.addEventListener('change', updateViewportState);
+
+    return () => {
+      mobileQuery.removeEventListener('change', updateViewportState);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isMobileViewport && activeTab === 'features') {
+      setActiveTab(projectOverviewTabs[0].id);
+    }
+  }, [activeTab, isMobileViewport]);
+
   return (
     <article className="project-overview" aria-labelledby="project-overview-title">
       <h1 className="sr-only" id="project-overview-title">
@@ -83,21 +108,34 @@ function ProjectOverviewContent({ project }) {
             Back to Projects
           </Link>
 
-          <div className="project-overview__tab-list" role="tablist" aria-label="Project overview sections">
-            {projectOverviewTabs.map((tab) => (
-              <button
-                className="project-overview__tab"
-                type="button"
-                role="tab"
-                key={tab.id}
-                id={`project-tab-${tab.id}`}
-                aria-selected={activeTab === tab.id}
-                aria-controls={`project-panel-${tab.id}`}
-                onClick={() => setActiveTab(tab.id)}
+          <div className="project-overview__section-nav">
+            <div className="project-overview__tab-list" role="tablist" aria-label="Project overview sections">
+              {visibleProjectOverviewTabs.map((tab) => (
+                <button
+                  className="project-overview__tab"
+                  type="button"
+                  role="tab"
+                  key={tab.id}
+                  id={`project-tab-${tab.id}`}
+                  aria-selected={activeTab === tab.id}
+                  aria-controls={`project-panel-${tab.id}`}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {project.launchUrl ? (
+              <a
+                className="project-overview__tab project-overview__tab--external"
+                href={project.launchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {tab.label}
-              </button>
-            ))}
+                Launch App
+              </a>
+            ) : null}
           </div>
         </div>
 
@@ -163,6 +201,20 @@ function ProjectOverviewContent({ project }) {
                               ))}
                             </span>
                           )
+                        ) : row.key === 'version' && showGithubLink ? (
+                          <span className="project-glance-list__version">
+                            <span>{row.value}</span>
+                            <a
+                              className="project-glance-list__github"
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${project.title} GitHub repository`}
+                            >
+                              <img src={githubIcon} alt="" aria-hidden="true" />
+                              <span>View Source</span>
+                            </a>
+                          </span>
                         ) : (
                           row.value
                         )}

@@ -22,6 +22,8 @@ export const projects = [
   {
     title: "Founded",
     slug: "founded",
+    launchUrl: "https://founded.donwilson-dev.com/",
+    githubUrl: "https://github.com/donwilson-dev/Founded",
     status: "Completed",
     cardDescription:
       "Personal finance planning with projections, scenarios, and payoff optimization.",
